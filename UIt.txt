@@ -1,0 +1,5 @@
+import tkinter as tui
+tko=tui.Tk()
+frame=tui.Frame(tko, borderwidth=10)
+button=tui.Button(frame, text="EXIT", command=tko.destroy)
+tko.mainloop()
