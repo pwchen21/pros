@@ -18,7 +18,7 @@ def conn_db():
 		c=conn.cursor()
 		
 def check_id_pw():
-		conn=sqlite3.connect(r'D:\se\py\cash\db\test.db')
+		conn=sqlite3.connect(r'db/test.db')
 		c=conn.cursor()
 		
 		# Get User's Password
@@ -54,7 +54,7 @@ def reg_user():
 	
 	def to_reg():
 		#print(idr.get(), nic.get(), mailr.get(), pwr.get())
-		conn=sqlite3.connect(r'D:\se\py\cash\db\test.db')
+		conn=sqlite3.connect(r'db/test.db')
 		c=conn.cursor()		
 		
 		r=c.execute('SELECT PW from USER WHERE NAME=?;', (id.get(),))		
