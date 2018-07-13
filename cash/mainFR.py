@@ -33,3 +33,4 @@ def main():
 	target.place(x=60, y=100)
 		
 	tko.mainloop()
+	
