@@ -1,9 +1,16 @@
 """
+Version:0.0.01
 Histroy: 
-2018/07/05 - Copy from pickleT.py & check_id_pw function completed
-2018/07/06 - reg_user function completed
+2017/07/20 - Change Title/Frame Size
 2081/07/10 - Clarify Folder, Change the path
-Modify Date: 2018/7/10
+2018/07/06 - reg_user function completed
+2018/07/05 - Copy from pickleT.py & check_id_pw function completed
+
+Waiting Imporve / Fix:
+I001-Add Logo
+
+Modify Date: 2018/7/20
+
 """
 import pickle
 import sqlite3
@@ -102,8 +109,8 @@ def exit_pro():
 
 #Create Logon Windows
 tko=tk.Tk()
-tko.title("Welcome to read!")
-tko.geometry('300x300')	
+tko.title("Money Life")
+tko.geometry('300x100')	
 
 #User ID Label / Input
 tk.Label(tko, text='User Name: ').place(x=10, y=10)
