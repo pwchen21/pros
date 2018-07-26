@@ -1,13 +1,15 @@
 """
-Version:0.0.01
+Version:0.0.02
 Histroy: 
 2018/7/20 - Initial Version
+2018/7/26 - Fix Add Item with number will casuse modify/delete error
 
 Waiting Imporve / Fix:
 I001-Unselect for edit delete
 I002-Add Exit
+F001-Delete/Modify for mobile phone will failed, because "0" will be igonored.
 
-Modify Date: 2018/7/20
+Modify Date: 2018/7/26
 """
 
 import pickle
@@ -102,7 +104,7 @@ class MainCategory:
 		#Get value for selection item
 		if len(ms)!=0:		
 			select=self.tree.item(ms)['values'][1]	
-			sqlc="UPDATE MAIN_CAT SET MC_NAME='"+self.MCE.get()+"' WHERE MC_NAME='"+select+"'"
+			sqlc="UPDATE MAIN_CAT SET MC_NAME='"+self.MCE.get()+"' WHERE MC_NAME='"+str(select)+"'"
 			self.conn_db(sqlc)
 		else:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
@@ -115,7 +117,7 @@ class MainCategory:
 		#Get value for selection item & Check selection
 		if len(ms) != 0:
 			select=self.tree.item(ms)['values'][1]
-			ad="DELETE FROM MAIN_CAT WHERE MC_NAME ='"+ select + "'"
+			ad="DELETE FROM MAIN_CAT WHERE MC_NAME ='"+ str(select) + "'"
 			self.conn_db(ad)
 		else:
 			tk.messagebox.showerror(title='Error', message='Please correct record!!')
