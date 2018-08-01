@@ -54,6 +54,7 @@ class MainCategory:
 		
 		
 		# Create button for New & Edit & Delete
+		# I don't know why add lambda is workable
 		self.MCADD=tk.Button(self.MC, text="ADD", width=7, bg='gray94', bd=2, command=lambda:self.add_main(self.MCE.get()))
 		self.MCADD.place(x=20, y=300)
 		
@@ -90,8 +91,8 @@ class MainCategory:
 		self.gr=gr
 		self.tree_data(gr)
 	
-	#Function Add Main Category
 	def add_main(self,mce):
+	#Function Add Main Category
 		ad="INSERT INTO MAIN_CAT (MC_NAME) VALUES ('"+ mce + "')"
 		self.conn_db(ad)
 		

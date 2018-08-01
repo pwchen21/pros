@@ -17,20 +17,41 @@ TK=tk.Tk()
 TK.title("Sub Category Editor")
 TK.geometry('250x350')
 
-def action1(x):
-	print(x)
 
+#prfecct example
+def conn_db(sqlc, *w):		
+		print(*w)
+		conn=sqlite3.connect(r'db/test.db')
+		c=conn.cursor()
+		r=c.execute(sqlc, *w)
+		data=r.fetchall()
+		conn.commit()
+		conn.close()
+		return data
+		
+#t='abcde'
+#c1=123
+#ac=323921232343
+#cd=400
+#fd=1000
+n='test'
 
-def test(x):
-	print(x)
+sql='DELETE FROM INIT_BANK WHERE TITLE=?'
+conn_db(sql, (n,))
 
-val=tk.StringVar()
-list=['aaa', 'bbb', 'ccc']
-val.set(list[0])
-op=tk.OptionMenu(TK, val, *list, command=action1)
-#op=tk.OptionMenu(TK, val, 'a', 'b' ,'c', command=test(val))
-op.pack()
+#Perfect example for variable
+#sql='INSERT INTO INIT_BANK (TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?,?,?,?,?)'
+#conn_db(sql, (t,c1,ac,cd,fd))
 
+#
+print(conn_db('select * from INIT_BANK'))
+#print(INSERT INTO INIT_BANK (TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?,?,?,?,?)', (t,c,ac,cd,fd))
 
+# Below command is OK -----
+# conn=sqlite3.connect(r'db/test.db')
+# c=conn.cursor()
+# c.execute('INSERT INTO INIT_BANK (TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?,?,?,?,?)', (t,c1,ac,cd,fd))
+# conn.commit()
+# -----
 
 TK.mainloop()
