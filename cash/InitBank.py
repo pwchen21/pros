@@ -37,7 +37,7 @@ class InitBank:
 		self.CB=tk.Entry(self.IB, width=13, textvariable=self.CBS)
 		self.CB.place(x=200, y=10)
 		
-		# Create Band code
+		# Create Bank code
 		self.CBBS=tk.StringVar()
 		tk.Label(self.IB, text="銀行代號：").place(x=130, y=40)
 		self.CBB=tk.Entry(self.IB, width=8, textvariable=self.CBBS)

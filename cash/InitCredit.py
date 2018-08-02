@@ -25,9 +25,9 @@ class InitCredit:
 		
 		# Create Credit Card List
 		self.cdstr=tk.StringVar()
-		self.getcd='select TITLE from INIT_CREDIT'
+		self.getcd='select BANK,TYPE from INIT_CREDIT'
 		self.cdstr.set(self.conn_db(self.getcd))
-		tk.Label(self.IC, text="信用卡列表：").place(x=35, y=10)
+		tk.Label(self.IC, text="信用卡列表：").place(x=33, y=10)
 		self.cdlb=tk.Listbox(self.IC, listvariable=self.cdstr, width=15, height=12)
 		self.cdlb.place(x=10, y=30)
 		#self.cdlb.bind('<<ListboxSelect>>', self.selected)
@@ -37,23 +37,21 @@ class InitCredit:
 		tk.Label(self.IC, text="銀行名稱：").place(x=130, y=10)
 		self.CB=tk.Entry(self.IC, width=13, textvariable=self.CBS)
 		self.CB.place(x=200, y=10)
-		
-		# Create credit card type
-		self.CDT=['MASTER', 'VISA', 'JCB']
-		ttk.OptionMenu(self.IC, self.CDT).place(x=130, y=40)
-		
+			
+		# Create credit card name
+		self.CDNS=tk.StringVar()
+		tk.Label(self.IC, text="卡種：").place(x=130, y=40)
+		self.CDNE=tk.Entry(self.IC, width=8, textvariable=self.CDNS)
+		self.CDNE.place(x=200, y=40)
+			
+		# Create Credit card type	
 		self.CDTS=tk.StringVar()
-		tk.Label(self.IC, text="卡別/卡種：").place(x=130, y=40)
-		self.CDTE=tk.Entry(self.IC, width=8, textvariable=self.CDTS)
-		self.CDTE.place(x=200, y=40)
+		option=['Master', 'Visa', 'JCB']
+		tk.Label(self.IC, text="卡別：").place(x=130, y=70)
+		self.CDTOM=ttk.OptionMenu(self.IC, self.CDTS, option[0], *option)
+		self.CDTOM.place(x=200, y=70)
+
 		"""
-		
-		# Create Bank Account number	
-		self.CBAS=tk.StringVar()
-		tk.Label(self.IC, text="銀行帳號:").place(x=180, y=80)
-		self.CBA=tk.Entry(self.IC, width=23, textvariable=self.CBAS)
-		self.CBA.place(x=130, y=100)
-		
 		# Create CURRENT Deposit
 		self.CCDS=tk.StringVar()
 		tk.Label(self.IC, text="活期存款：").place(x=130, y=140)
