@@ -3,8 +3,10 @@ Version:0.0.02
 Histroy: 
 2018/8/1 - Initial Version
 2018/8/3 - Fix delete without item selected will not popup error message
-
+		   Add User authority
+		   
 Waiting Imporve / Fix:
+I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
 
 Modify Date: 2018/8/1
@@ -18,6 +20,9 @@ from tkinter import messagebox
 class InitBank:
 
 	def __init__(self):
+		# Temp user, this will be replace by variable 
+		self.usr=1
+		
 		# Create InitBank
 		self.IB=tk.Tk()
 		self.IB.title("Init/Edit Bank")
@@ -25,8 +30,8 @@ class InitBank:
 		
 		# Create Bank List
 		self.bankstr=tk.StringVar()
-		self.getbank='select TITLE from INIT_BANK'
-		self.bankstr.set(self.conn_db(self.getbank))
+		self.getbank='select TITLE from INIT_BANK WHERE AUTH=?'
+		self.bankstr.set(self.conn_db(self.getbank,(self.usr,)))
 		tk.Label(self.IB, text="銀行列表：").place(x=35, y=10)
 		self.bklb=tk.Listbox(self.IB, listvariable=self.bankstr, width=15, height=12)
 		self.bklb.place(x=10, y=30)
@@ -95,38 +100,38 @@ class InitBank:
 			value=self.bklb.get(self.bklb.curselection())[0]
 			sql="SELECT * FROM INIT_BANK WHERE TITLE=?"
 			get_record=self.conn_db(sql, (value,))
-			self.CBS.set(get_record[0][1])
-			self.CBBS.set(get_record[0][2])
-			self.CBAS.set(get_record[0][3])
-			self.CCDS.set(get_record[0][4])
-			self.CFDS.set(get_record[0][5])
+			self.CBS.set(get_record[0][2])
+			self.CBBS.set(get_record[0][3])
+			self.CBAS.set(get_record[0][4])
+			self.CCDS.set(get_record[0][5])
+			self.CFDS.set(get_record[0][6])
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
 
 		
 	def new_bank(self):	
-		sql='INSERT INTO INIT_BANK (TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?,?,?,?,?)'
-		self.conn_db(sql, (self.CB.get(), self.CBB.get(), self.CBA.get(), self.CCD.get(), self.CFD.get()))
+		sql='INSERT INTO INIT_BANK (AUTH, TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?, ?,?,?,?,?)'
+		self.conn_db(sql, (self.usr, self.CB.get(), self.CBB.get(), self.CBA.get(), self.CCD.get(), self.CFD.get(),))
 		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank))
+		self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
 		
 		self.clear_all()
 		
 	def save_bank(self):
 		value=self.bklb.get(self.bklb.curselection())[0]
-		sql='UPDATE INIT_BANK SET TITLE=?, CODE=?, ACCOUNT=?, CUR_DEP=?, FIX_DEP=? WHERE TITLE=?'
-		self.conn_db(sql, (self.CBS.get(), self.CBBS.get(), self.CBAS.get(), self.CCDS.get(), self.CFDS.get(), value,))
+		sql='UPDATE INIT_BANK SET TITLE=?, CODE=?, ACCOUNT=?, CUR_DEP=?, FIX_DEP=? WHERE TITLE=? AND AUTH=?'
+		self.conn_db(sql, (self.CBS.get(), self.CBBS.get(), self.CBAS.get(), self.CCDS.get(), self.CFDS.get(), value, self.usr,))
 		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank))
+		self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
 
 		
 	def del_bank(self):
 		try:
 			value=self.bklb.get(self.bklb.curselection())[0]
-			sql='DELETE FROM INIT_BANK WHERE TITLE=?'
-			self.conn_db(sql, (value,))
+			sql='DELETE FROM INIT_BANK WHERE TITLE=? AND AUTH=?'
+			self.conn_db(sql, (value, self.usr))
 			#Rebuild list
-			self.bankstr.set(self.conn_db(self.getbank))
+			self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
 			
 			self.clear_all()
 		except:

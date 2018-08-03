@@ -1,13 +1,20 @@
 """
-Version:0.0.02
+Version:0.0.03
 Histroy: 
 2018/7/20 - Initial Version
-2018/7/26 - Fix Add Item with number will casuse modify/delete error
+2018/7/26 - Fix[F001] Add Item with number will casuse modify/delete error
+2018/8/03 - Add User authority
+			FIX [F001] Change Modify/Delete According to ID
+			Change EDIT/DELETE by ID
 
 Waiting Imporve / Fix:
 I001-Unselect for edit delete
 I002-Add Exit
-F001-Delete/Modify for mobile phone will failed, because "0" will be igonored.
+I003-Change Item should get original value
+I004-When Delete MainCategory, all the sub category belongs to main should be deleted
+
+[Fixed-2018080300] F001-Delete/Modify for mobile phone will failed, because "0" will be igonored.
+
 
 Modify Date: 2018/7/26
 """
@@ -20,9 +27,12 @@ from tkinter import ttk
 from tkinter import messagebox
 
 
-class MainCategory:
+class MainCategory():
 
 	def __init__(self):
+	
+		# Temp user, this will be replace by variable 
+		self.usr=2
 		# Create main category editor
 		self.MC=tk.Tk()
 		self.MC.title("Main Category Editor")
@@ -43,7 +53,8 @@ class MainCategory:
 		self.tree.column('MC_NAME', width=150, anchor='center')
 		self.tree.heading('MC_NAME', text="Name")
 		
-		self.gr=self.conn_db('SELECT * FROM MAIN_CAT')
+		sql='SELECT MCID,MC_NAME FROM MAIN_CAT WHERE AUTH=?'
+		self.gr=self.conn_db(sql, (self.usr,))
 		self.tree_data(self.gr)
 		
 		# Create Label for New / Edit
@@ -67,10 +78,10 @@ class MainCategory:
 		self.MC.mainloop()
 	
 	# Connect to DB and create cursor
-	def conn_db(self, sqlc):		
+	def conn_db(self, sqlc, *v):		
 			conn=sqlite3.connect(r'db/test.db')
 			c=conn.cursor()
-			r=c.execute(sqlc)
+			r=c.execute(sqlc, *v)
 			data=r.fetchall()
 			conn.commit()
 			conn.close()
@@ -78,23 +89,26 @@ class MainCategory:
 
 	
 	def tree_data(self,gr):
+		print('gr:', gr)
 		#Improve Needed: Trying to find a goodway to destroy tree??
 		#self.tree.delete(self.tree.get_children())		
 		for i in self.tree.get_children():
 				self.tree.delete(i)
 		for main_cat in gr:
+			#print('tree_data:',main_cat )
 			self.tree.insert('','end', values=main_cat)		
 		self.tree.pack()
 	
 	def rebuild_tree(self):
-		gr=self.conn_db('SELECT * FROM MAIN_CAT')
+		sql='SELECT MCID,MC_NAME FROM MAIN_CAT WHERE AUTH=?'
+		gr=self.conn_db(sql, (self.usr,))
 		self.gr=gr
 		self.tree_data(gr)
 	
 	def add_main(self,mce):
 	#Function Add Main Category
-		ad="INSERT INTO MAIN_CAT (MC_NAME) VALUES ('"+ mce + "')"
-		self.conn_db(ad)
+		sql="INSERT INTO MAIN_CAT (AUTH, MC_NAME) VALUES (?, ?)"
+		self.conn_db(sql, (self.usr, mce, ))
 		
 		self.rebuild_tree()
 	
@@ -104,22 +118,25 @@ class MainCategory:
 		ms=self.tree.selection()
 		#Get value for selection item
 		if len(ms)!=0:		
-			select=self.tree.item(ms)['values'][1]	
-			sqlc="UPDATE MAIN_CAT SET MC_NAME='"+self.MCE.get()+"' WHERE MC_NAME='"+str(select)+"'"
-			self.conn_db(sqlc)
+			select=self.tree.item(ms)['values'][0]	
+			sqlc="UPDATE MAIN_CAT SET MC_NAME=? WHERE MCID=?"
+			self.conn_db(sqlc, (self.MCE.get(), str(select),))
 		else:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
 		self.rebuild_tree()
 
 	#Function Delete Main Category
 	def del_main(self,mce):
+
 		#Focus on selection
-		ms=self.tree.selection()		
+		ms=self.tree.selection()
+		#print(self.tree.item(ms))
 		#Get value for selection item & Check selection
 		if len(ms) != 0:
-			select=self.tree.item(ms)['values'][1]
-			ad="DELETE FROM MAIN_CAT WHERE MC_NAME ='"+ str(select) + "'"
-			self.conn_db(ad)
+			select=str((self.tree.item(ms)['values'][0]))
+			print('here:',self.tree.item(ms))
+			ad="DELETE FROM MAIN_CAT WHERE MCID=?"
+			self.conn_db(ad, (select,))
 		else:
 			tk.messagebox.showerror(title='Error', message='Please correct record!!')
 		self.rebuild_tree()

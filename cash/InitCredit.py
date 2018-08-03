@@ -1,9 +1,10 @@
 """
 Version:0.0.01
 Histroy: 
-2018/8/3 - Initial Version
+2018/8/3 - Initial Version with User Authority
 
 Waiting Imporve / Fix:
+I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
 
 Modify Date: 2018/8/3
@@ -18,6 +19,9 @@ from tkinter import messagebox
 class InitCredit:
 
 	def __init__(self):
+		# Temp user, this will be replace by variable 
+		self.usr=1
+		
 		# Create InitCredit
 		self.IC=tk.Tk()
 		self.IC.title("Init/Edit Credit")
@@ -25,8 +29,8 @@ class InitCredit:
 		
 		# Create Credit Card List
 		self.cdstr=tk.StringVar()
-		self.getcd='select TYPE from INIT_CREDIT'
-		self.cdstr.set(self.conn_db(self.getcd))
+		self.getcd='select TYPE from INIT_CREDIT WHERE AUTH=?'
+		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
 		tk.Label(self.IC, text="信用卡列表：").place(x=33, y=10)
 		self.cdlb=tk.Listbox(self.IC, listvariable=self.cdstr, width=15, height=16)
 		self.cdlb.place(x=10, y=30)
@@ -79,7 +83,7 @@ class InitCredit:
 		# Create STATUS 
 		self.CDSTS=tk.StringVar()
 		self.CDSTS.set('N')
-		tk.Label(self.IC, text="起用").place(x=130, y=260)
+		tk.Label(self.IC, text="啟用").place(x=130, y=260)
 		self.CDSTCB=tk.Checkbutton(self.IC, offvalue='N', onvalue='Y', variable=self.CDSTS)
 		self.CDSTCB.place(x=200, y=260)
 
@@ -122,46 +126,46 @@ class InitCredit:
 	def selected(self, *w):
 		try:
 			value=self.cdlb.get(self.cdlb.curselection())[0]
-			sql="SELECT * FROM INIT_CREDIT WHERE TYPE=?"
-			get_record=self.conn_db(sql, (value,))
+			sql="SELECT * FROM INIT_CREDIT WHERE TYPE=? AND AUTH=?"
+			get_record=self.conn_db(sql, (value, self.usr,))
 			#print(get_record)
 			
-			self.CBS.set(get_record[0][1])
-			self.CDNS.set(get_record[0][2])
-			self.CDTS.set(get_record[0][3])
-			self.CDCS.set(get_record[0][4])
-			self.CDCRCS.set(get_record[0][5])
-			self.CDCLS.set(get_record[0][6])
-			self.CDPDS.set(get_record[0][7])
-			self.CDSTS.set(get_record[0][8])
+			self.CBS.set(get_record[0][2])
+			self.CDNS.set(get_record[0][3])
+			self.CDTS.set(get_record[0][4])
+			self.CDCS.set(get_record[0][5])
+			self.CDCRCS.set(get_record[0][6])
+			self.CDCLS.set(get_record[0][7])
+			self.CDPDS.set(get_record[0][8])
+			self.CDSTS.set(get_record[0][9])
 			
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
 	
 		
 	def new_credit(self):	
-		sql='INSERT INTO INIT_CREDIT (BANK, TYPE, MVF, NUM, IDENTIFY, CYCLE, PAYDAY, STATUS) VALUES (?,?,?,?,?,?,?,?)'
-		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get()))
+		sql='INSERT INTO INIT_CREDIT (AUTH, BANK, TYPE, MVF, NUM, IDENTIFY, CYCLE, PAYDAY, STATUS) VALUES (?, ?,?,?,?,?,?,?,?)'
+		self.conn_db(sql, (self.usr, self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get()))
 		#Rebuild list
-		self.cdstr.set(self.conn_db(self.getcd))		
+		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))		
 		self.clear_all()
 
 		
 	def save_credit(self):
 		value=self.cdlb.get(self.cdlb.curselection())[0]
-		sql='UPDATE INIT_CREDIT SET BANK=?, TYPE=?, MVF=?, NUM=?, IDENTIFY=?, CYCLE=?, PAYDAY=?, STATUS=? WHERE TYPE=?'
-		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get(), value,))
+		sql='UPDATE INIT_CREDIT SET BANK=?, TYPE=?, MVF=?, NUM=?, IDENTIFY=?, CYCLE=?, PAYDAY=?, STATUS=? WHERE TYPE=? AND AUTH=?'
+		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get(), value, self.usr))
 		#Rebuild & clear get entry
-		self.cdstr.set(self.conn_db(self.getcd))		
+		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))	
 		self.clear_all()
 		
 	def del_credit(self):
 		try:
 			value=self.cdlb.get(self.cdlb.curselection())[0]
-			sql='DELETE FROM INIT_CREDIT WHERE TYPE=?'
-			self.conn_db(sql, (value,))
+			sql='DELETE FROM INIT_CREDIT WHERE TYPE=? AND AUTH=?'
+			self.conn_db(sql, (value, self.usr))
 			#Rebuild list
-			self.cdstr.set(self.conn_db(self.getcd))
+			self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
 			
 			self.clear_all()
 		except:
