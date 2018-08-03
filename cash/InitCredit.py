@@ -1,12 +1,12 @@
 """
 Version:0.0.01
 Histroy: 
-2018/8/1 - Initial Version
+2018/8/3 - Initial Version
 
 Waiting Imporve / Fix:
-F001- Shows select record when using Tab to change column 
+F001- Shows select record when using Tab(or multiple value selected) to change column 
 
-Modify Date: 2018/8/1
+Modify Date: 2018/8/3
 """
 
 import pickle
@@ -21,22 +21,22 @@ class InitCredit:
 		# Create InitCredit
 		self.IC=tk.Tk()
 		self.IC.title("Init/Edit Credit")
-		self.IC.geometry('310x260')
+		self.IC.geometry('310x335')
 		
 		# Create Credit Card List
 		self.cdstr=tk.StringVar()
-		self.getcd='select BANK,TYPE from INIT_CREDIT'
+		self.getcd='select TYPE from INIT_CREDIT'
 		self.cdstr.set(self.conn_db(self.getcd))
 		tk.Label(self.IC, text="信用卡列表：").place(x=33, y=10)
-		self.cdlb=tk.Listbox(self.IC, listvariable=self.cdstr, width=15, height=12)
+		self.cdlb=tk.Listbox(self.IC, listvariable=self.cdstr, width=15, height=16)
 		self.cdlb.place(x=10, y=30)
-		#self.cdlb.bind('<<ListboxSelect>>', self.selected)
+		self.cdlb.bind('<<ListboxSelect>>', self.selected)
 			
 		# Create Bank Name
 		self.CBS=tk.StringVar()
 		tk.Label(self.IC, text="銀行名稱：").place(x=130, y=10)
-		self.CB=tk.Entry(self.IC, width=13, textvariable=self.CBS)
-		self.CB.place(x=200, y=10)
+		self.CBE=tk.Entry(self.IC, width=13, textvariable=self.CBS)
+		self.CBE.place(x=200, y=10)
 			
 		# Create credit card name
 		self.CDNS=tk.StringVar()
@@ -46,33 +46,53 @@ class InitCredit:
 			
 		# Create Credit card type	
 		self.CDTS=tk.StringVar()
-		option=['Master', 'Visa', 'JCB']
+		option=['Master', 'VISA', 'JCB']
+		self.get_card_type(option[0])
 		tk.Label(self.IC, text="卡別：").place(x=130, y=70)
-		self.CDTOM=ttk.OptionMenu(self.IC, self.CDTS, option[0], *option)
+		self.CDTOM=ttk.OptionMenu(self.IC, self.CDTS, option[0], *option, command=self.get_card_type)
 		self.CDTOM.place(x=200, y=70)
-
-		"""
-		# Create CURRENT Deposit
-		self.CCDS=tk.StringVar()
-		tk.Label(self.IC, text="活期存款：").place(x=130, y=140)
-		self.CCD=tk.Entry(self.IC, width=13, textvariable=self.CCDS)
-		self.CCD.place(x=200, y=140)
-				
-		# Create FIX Deposit
-		self.CFDS=tk.StringVar()
-		tk.Label(self.IC, text="定期存款：").place(x=130, y=170)
-		self.CFD=tk.Entry(self.IC, width=13, textvariable=self.CFDS)
-		self.CFD.place(x=200, y=170)
-
-		# Create Button for New / Save / Cancel
-		NBBT=tk.Button(self.IC, text="Add", bg='gray94', bd=2, command=self.new_bank)
-		NBBT.place(x=130, y=210)
-		SBBT=tk.Button(self.IC, text="Save", bg='gray94', bd=2, command=self.save_bank)
-		SBBT.place(x=180, y=210)
-		CBBT=tk.Button(self.IC, text="Del", bg='gray94', bd=2, command=self.del_bank)
-		CBBT.place(x=230, y=210)		
 		
-		"""	
+		# Create Credit card number
+		self.CDCS=tk.StringVar()
+		tk.Label(self.IC, text="信用卡號：").place(x=180, y=100)
+		self.CDCE=tk.Entry(self.IC, width=23, textvariable=self.CDCS)
+		self.CDCE.place(x=130, y=130)
+		
+		# Create CRC
+		self.CDCRCS=tk.StringVar()
+		tk.Label(self.IC, text="檢查碼").place(x=130, y=170)
+		self.CDCRCE=tk.Entry(self.IC, width=13, textvariable=self.CDCRCS)
+		self.CDCRCE.place(x=200, y=170)
+		
+		# Create Close Date
+		self.CDCLS=tk.StringVar()
+		tk.Label(self.IC, text="結帳日").place(x=130, y=200)
+		self.CDCLE=tk.Entry(self.IC, width=13, textvariable=self.CDCLS)
+		self.CDCLE.place(x=200, y=200)
+		
+		# Create PAY Date
+		self.CDPDS=tk.StringVar()
+		tk.Label(self.IC, text="付款日").place(x=130, y=230)
+		self.CDPDE=tk.Entry(self.IC, width=13, textvariable=self.CDPDS)
+		self.CDPDE.place(x=200, y=230)
+		
+		# Create STATUS 
+		self.CDSTS=tk.StringVar()
+		self.CDSTS.set('N')
+		tk.Label(self.IC, text="起用").place(x=130, y=260)
+		self.CDSTCB=tk.Checkbutton(self.IC, offvalue='N', onvalue='Y', variable=self.CDSTS)
+		self.CDSTCB.place(x=200, y=260)
+
+		
+		# Create Button for New / Save / Cancel
+		NBBT=tk.Button(self.IC, text="Add", bg='gray94', bd=2, command=self.new_credit)
+		NBBT.place(x=140, y=290)
+		SBBT=tk.Button(self.IC, text="Save", bg='gray94', bd=2, command=self.save_credit)
+		SBBT.place(x=190, y=290)
+		CBBT=tk.Button(self.IC, text="Del", bg='gray94', bd=2, command=self.del_credit)
+		CBBT.place(x=240, y=290)		
+		
+		
 		self.IC.mainloop()
 	
 	def conn_db(self, sqlc, *v):		
@@ -84,53 +104,68 @@ class InitCredit:
 			conn.close()
 			return data
 	
-	"""
+	
+	def get_card_type(self, cardt):
+		#print('test:', cardt)
+		return cardt
+	
 	# Clear all entry
 	def clear_all(self):
-		self.CB.delete(0, 'end')
-		self.CBB.delete(0, 'end')
-		self.CBA.delete(0, 'end')
-		self.CCD.delete(0, 'end')
-		self.CFD.delete(0, 'end')	
+		self.CBE.delete(0, 'end')    # Bank Name
+		self.CDNE.delete(0, 'end')   # Credit card name
+		self.CDCE.delete(0, 'end')   # Credit card number
+		self.CDCRCE.delete(0, 'end') # Credit card CRC
+		self.CDCLE.delete(0,'end')   # Credit card Cycle date
+		self.CDPDE.delete(0, 'end')	 # Credit card Pay date
+	
 	
 	def selected(self, *w):
 		try:
-			value=self.bklb.get(self.bklb.curselection())[0]
-			sql="SELECT * FROM INIT_BANK WHERE TITLE=?"
+			value=self.cdlb.get(self.cdlb.curselection())[0]
+			sql="SELECT * FROM INIT_CREDIT WHERE TYPE=?"
 			get_record=self.conn_db(sql, (value,))
+			#print(get_record)
+			
 			self.CBS.set(get_record[0][1])
-			self.CBBS.set(get_record[0][2])
-			self.CBAS.set(get_record[0][3])
-			self.CCDS.set(get_record[0][4])
-			self.CFDS.set(get_record[0][5])
+			self.CDNS.set(get_record[0][2])
+			self.CDTS.set(get_record[0][3])
+			self.CDCS.set(get_record[0][4])
+			self.CDCRCS.set(get_record[0][5])
+			self.CDCLS.set(get_record[0][6])
+			self.CDPDS.set(get_record[0][7])
+			self.CDSTS.set(get_record[0][8])
+			
+		except:
+			tk.messagebox.showerror(title='Error', message='Please select record!!')
+	
+		
+	def new_credit(self):	
+		sql='INSERT INTO INIT_CREDIT (BANK, TYPE, MVF, NUM, IDENTIFY, CYCLE, PAYDAY, STATUS) VALUES (?,?,?,?,?,?,?,?)'
+		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get()))
+		#Rebuild list
+		self.cdstr.set(self.conn_db(self.getcd))		
+		self.clear_all()
+
+		
+	def save_credit(self):
+		value=self.cdlb.get(self.cdlb.curselection())[0]
+		sql='UPDATE INIT_CREDIT SET BANK=?, TYPE=?, MVF=?, NUM=?, IDENTIFY=?, CYCLE=?, PAYDAY=?, STATUS=? WHERE TYPE=?'
+		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get(), value,))
+		#Rebuild & clear get entry
+		self.cdstr.set(self.conn_db(self.getcd))		
+		self.clear_all()
+		
+	def del_credit(self):
+		try:
+			value=self.cdlb.get(self.cdlb.curselection())[0]
+			sql='DELETE FROM INIT_CREDIT WHERE TYPE=?'
+			self.conn_db(sql, (value,))
+			#Rebuild list
+			self.cdstr.set(self.conn_db(self.getcd))
+			
+			self.clear_all()
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
 
-		
-	def new_bank(self):	
-		sql='INSERT INTO INIT_BANK (TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?,?,?,?,?)'
-		self.conn_db(sql, (self.CB.get(), self.CBB.get(), self.CBA.get(), self.CCD.get(), self.CFD.get()))
-		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank))
-		
-		self.clear_all()
-		
-	def save_bank(self):
-		value=self.bklb.get(self.bklb.curselection())[0]
-		sql='UPDATE INIT_BANK SET TITLE=?, CODE=?, ACCOUNT=?, CUR_DEP=?, FIX_DEP=? WHERE TITLE=?'
-		self.conn_db(sql, (self.CBS.get(), self.CBBS.get(), self.CBAS.get(), self.CCDS.get(), self.CFDS.get(), value,))
-		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank))
-
-		
-	def del_bank(self):
-		value=self.bklb.get(self.bklb.curselection())[0]
-		sql='DELETE FROM INIT_BANK WHERE TITLE=?'
-		self.conn_db(sql, (value,))
-		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank))
-		
-		self.clear_all()
-	"""
 	
 InitCredit()

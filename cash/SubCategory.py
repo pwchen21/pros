@@ -52,7 +52,6 @@ class SubCategory:
 		self.SCtree.heading('SC_NAME', text="Name")
 		self.getSC(gr[0])
 		
-		
 		# Create Label for New / Edit
 		self.SCL=tk.Label(self.SC, text='Sub Category Name:')
 		self.SCL.place(x=15, y=260)
@@ -103,6 +102,7 @@ class SubCategory:
 	
 	def getSC(self, SCName):
 		self.MC=SCName
+		#print("1:", self.MC)
 		sql='SELECT SBCID, SUBC_NAME FROM SUB_CAT WHERE MCID=(SELECT MCID FROM MAIN_CAT WHERE MC_NAME="'+SCName[0]+'")'
 		self.gr=self.conn_db(sql)
 		self.tree_data(self.gr)	

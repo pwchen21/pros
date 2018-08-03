@@ -1,10 +1,11 @@
 """
-Version:0.0.01
+Version:0.0.02
 Histroy: 
 2018/8/1 - Initial Version
+2018/8/3 - Fix delete without item selected will not popup error message
 
 Waiting Imporve / Fix:
-F001- Shows select record when using Tab to change column 
+F001- Shows select record when using Tab(or multiple value selected) to change column 
 
 Modify Date: 2018/8/1
 """
@@ -120,12 +121,14 @@ class InitBank:
 
 		
 	def del_bank(self):
-		value=self.bklb.get(self.bklb.curselection())[0]
-		sql='DELETE FROM INIT_BANK WHERE TITLE=?'
-		self.conn_db(sql, (value,))
-		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank))
-		
-		self.clear_all()
+		try:
+			value=self.bklb.get(self.bklb.curselection())[0]
+			sql='DELETE FROM INIT_BANK WHERE TITLE=?'
+			self.conn_db(sql, (value,))
+			#Rebuild list
+			self.bankstr.set(self.conn_db(self.getbank))
 			
+			self.clear_all()
+		except:
+			tk.messagebox.showerror(title='Error', message='Please select record!!')
 InitBank()
