@@ -1,15 +1,16 @@
 """
-Version:0.0.02
+Version:0.0.03
 Histroy: 
-2018/7/26 - Initial Version
-2018/8/03 - Add User authority
+2018/07/26 - Initial Version
+2018/08/03 - Add User authority
 			Change EDIT/DELETE by ID
 			FIX [F001] Change Modify/Delete According to ID
+2018/08/08 - Improve user authority by logon
 			
 Waiting Imporve / Fix:
 [Fixed-2018080300] F001: Delete/Modify for mobile phone will failed, because "0" will be igonored.
 
-Modify Date: 2018/7/26
+Modify Date: 2018/08/08
 """
 
 import pickle
@@ -20,9 +21,9 @@ from tkinter import ttk
 from tkinter import messagebox
 
 class SubCategory:
-	def __init__(self):
+	def __init__(self, uid):
 		# Temp user, this will be replace by variable 
-		self.usr=2
+		self.usr=uid
 		# Create sub cateogory editor
 		self.SC=tk.Tk()
 		self.SC.title("Sub Category Editor")
@@ -46,7 +47,7 @@ class SubCategory:
 		sql='SELECT MC_NAME FROM MAIN_CAT WHERE AUTH=?'
 		gr=self.conn_db(sql, (self.usr, ))
 		self.val=tk.StringVar()
-		self.SCMB=ttk.OptionMenu(self.SC, self.val, gr[0],*gr, command=self.getSC)
+		self.SCMB=ttk.OptionMenu(self.SC, self.val, gr[0], *gr, command=self.getSC)
 		self.SCMB.pack()
 		
 		
@@ -161,5 +162,3 @@ class SubCategory:
 			tk.messagebox.showerror(title='Error', message='Please correct record!!')
 		self.rebuildsb(sqlr)
 
-		
-SubCategory()

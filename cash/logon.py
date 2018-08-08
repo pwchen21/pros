@@ -1,10 +1,11 @@
 """
-Version:0.0.01
+Version:0.0.05
 Histroy: 
 2017/07/20 - Change Title/Frame Size
 2081/07/10 - Clarify Folder, Change the path
 2018/07/06 - reg_user function completed
 2018/07/05 - Copy from pickleT.py & check_id_pw function completed
+2018/08/08 - Improve function for conn_db()
 
 Waiting Imporve / Fix:
 I001-Add Logo
@@ -19,32 +20,43 @@ import tkinter as tk
 from tkinter import messagebox
 
 
-def conn_db():
-		# Connect to DB and create cursor
-		conn=sqlite3.connect(r'D:\se\py\cash\db\test.db')
+# Connect to DB and create cursor
+def conn_db(sqlc, *v):		
+		conn=sqlite3.connect(r'db/test.db')
 		c=conn.cursor()
+		r=c.execute(sqlc, *v)
+		data=r.fetchall()
+		conn.commit()
+		conn.close()
+		return data
+
 		
 def check_id_pw():
 		conn=sqlite3.connect(r'db/test.db')
 		c=conn.cursor()
 		
 		# Get User's Password
-		r=c.execute('SELECT PW from USER WHERE NAME=?;', (id.get(),))		
-		rs=r.fetchone()
+		sql='SELECT PW from USER WHERE NAME=?'
+		rs=conn_db(sql, (id.get(),))
+		#print('here', rs)
 		
 		# If user does not exist, fetch will return none
-		if rs==None:
+		if len(rs)==0:
 			tk.messagebox.showerror(title='Error', message='Incorrect Account!!')
 		else:	
 			# Transfer user data from tuple to string
-			print(rs[0])
-			rst=str(rs[0])
-			print("rst:", rst, " ", "pwget:", pw.get())
+			#print(rs[0][0])
+			rst=str(rs[0][0])
+			#print("rst:", rst, " ", "pwget:", pw.get())
 			# Check password
 			if rst== pw.get():
 				tk.messagebox.showinfo(title='Info', message='Log on successfully!!')
+				sql='SELECT ID FROM USER WHERE NAME=?'
+				lgid=conn_db(sql, (id.get(),))
 				tko.destroy()
-				mainFR.main()
+				#print('logon:', lgid[0][0])
+				mainFR.main(lgid[0][0])
+				
 			else:
 				tk.messagebox.showerror(title='Error', message='Log on failed!')			
 
@@ -61,15 +73,16 @@ def reg_user():
 	
 	def to_reg():
 		#print(idr.get(), nic.get(), mailr.get(), pwr.get())
-		conn=sqlite3.connect(r'db/test.db')
-		c=conn.cursor()		
+		sql='SELECT PW from USER WHERE NAME=?'
+		print("id.get", id.get())
+		rs=conn_db(sql, (id.get(),))
+		print('p1:', len(rs))
 		
-		r=c.execute('SELECT PW from USER WHERE NAME=?;', (id.get(),))		
-		rs=r.fetchone()
 		
-		if rs==None:
-			c.execute('INSERT INTO USER (NAME, NICK, PW, MAIL) VALUES (?,?,?,?)', (idr.get(), nic.get(), pwr.get(), mailr.get()))
-			conn.commit()
+		if len(rs)==0:
+			sql='INSERT INTO USER (NAME, NICK, PW, MAIL) VALUES (?,?,?,?)'
+			conn_db(sql,(idr.get(), nic.get(), pwr.get(), mailr.get(),))
+
 		else:
 			tk.messagebox.showwarning(title='Warning', message='User Exists!!')
 		

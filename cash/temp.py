@@ -3,7 +3,6 @@ Version:x.x.x
 Histroy: 
 This file is for Debug / Try & Error
 
-Modify Date: 2018/7/23
 """
 
 import pickle
@@ -13,13 +12,25 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
+from temp2 import teeemp
+
 TK=tk.Tk()
 TK.title("Teset File")
 TK.geometry('250x350')
 
+def TC():
+	print("12345")
+	teeemp.fun1()
+	#temp2.ppt()
+
+nbtb=tk.Button(TK, text='testing', command=TC)
+nbtb.pack()
+
+TK.mainloop()
+
 
 #prfecct example
-
+"""
 def conn_db(sqlc, *w):		
 		print(*w)
 		conn=sqlite3.connect(r'db/test.db')
@@ -30,7 +41,8 @@ def conn_db(sqlc, *w):
 		conn.close()
 		return data
 		
-
+"""
+"""		
 def rg(x):
 	print(x)
 
@@ -41,7 +53,7 @@ tk.Label(TK, text="卡別：").pack()
 rg(option[0])
 CDTOM=ttk.OptionMenu(TK, CDTS, option[0], *option, command=rg)
 CDTOM.pack()
-
+"""
 
 
 """		
@@ -71,4 +83,4 @@ print(conn_db('select * from INIT_BANK'))
 # -----
 """
 
-TK.mainloop()
+

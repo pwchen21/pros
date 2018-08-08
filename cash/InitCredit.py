@@ -1,13 +1,16 @@
 """
-Version:0.0.01
+Version:0.0.02
 Histroy: 
-2018/8/3 - Initial Version with User Authority
+2018/08/03 - Initial Version with User Authority
+2018/08/08 - Improve user authority by logon (But Cannot get list by setting)
+
 
 Waiting Imporve / Fix:
 I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
+F002- Cannot get list by setting
 
-Modify Date: 2018/8/3
+Modify Date: 2018/08/08
 """
 
 import pickle
@@ -18,10 +21,10 @@ from tkinter import messagebox
 
 class InitCredit:
 
-	def __init__(self):
+	def __init__(self,uid):
 		# Temp user, this will be replace by variable 
-		self.usr=1
-		
+		self.usr=uid
+		print('IC:', self.usr)
 		# Create InitCredit
 		self.IC=tk.Tk()
 		self.IC.title("Init/Edit Credit")
@@ -30,8 +33,10 @@ class InitCredit:
 		# Create Credit Card List
 		self.cdstr=tk.StringVar()
 		self.getcd='select TYPE from INIT_CREDIT WHERE AUTH=?'
-		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
+		#print('data', self.conn_db(self.getcd, (self.usr,)))
+		#print('d:',self.cdstr.set(self.conn_db(self.getcd, (self.usr,))))
 		tk.Label(self.IC, text="信用卡列表：").place(x=33, y=10)
+		#print('cdstr:', self.cdstr)
 		self.cdlb=tk.Listbox(self.IC, listvariable=self.cdstr, width=15, height=16)
 		self.cdlb.place(x=10, y=30)
 		self.cdlb.bind('<<ListboxSelect>>', self.selected)
@@ -170,6 +175,3 @@ class InitCredit:
 			self.clear_all()
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
-
-	
-InitCredit()

@@ -1,15 +1,17 @@
 """
 Version:0.0.02
 Histroy: 
-2018/8/1 - Initial Version
-2018/8/3 - Fix delete without item selected will not popup error message
+2018/08/01 - Initial Version
+2018/08/03 - Fix delete without item selected will not popup error message
 		   Add User authority
+2018/08/08 - Improve user authority by logon (But Cannot get list by setting)
 		   
 Waiting Imporve / Fix:
 I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
+F002- Cannot get list by setting
 
-Modify Date: 2018/8/1
+Modify Date: 2018/08/08/1
 """
 
 import pickle
@@ -19,9 +21,9 @@ from tkinter import messagebox
 
 class InitBank:
 
-	def __init__(self):
+	def __init__(self, uid):
 		# Temp user, this will be replace by variable 
-		self.usr=1
+		self.usr=uid
 		
 		# Create InitBank
 		self.IB=tk.Tk()
@@ -136,4 +138,3 @@ class InitBank:
 			self.clear_all()
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
-InitBank()
