@@ -1,17 +1,18 @@
 """
-Version:0.0.02
+Version:0.0.03
 Histroy: 
 2018/08/01 - Initial Version
 2018/08/03 - Fix delete without item selected will not popup error message
 		   Add User authority
 2018/08/08 - Improve user authority by logon (But Cannot get list by setting)
+2018/08/14 - Trying to FIX F002		   
 		   
 Waiting Imporve / Fix:
 I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
 F002- Cannot get list by setting
 
-Modify Date: 2018/08/08/1
+Modify Date: 2018/08/08/14
 """
 
 import pickle
@@ -35,7 +36,10 @@ class InitBank:
 		self.getbank='select TITLE from INIT_BANK WHERE AUTH=?'
 		self.bankstr.set(self.conn_db(self.getbank,(self.usr,)))
 		tk.Label(self.IB, text="銀行列表：").place(x=35, y=10)
-		self.bklb=tk.Listbox(self.IB, listvariable=self.bankstr, width=15, height=12)
+		#print(self.bankstr.get())
+		#self.bklb=tk.Listbox(self.IB, listvariable=self.bankstr, width=15, height=12)
+		self.bklb=tk.Listbox(self.IB, width=15, height=12)
+		self.build_bklist()
 		self.bklb.place(x=10, y=30)
 		self.bklb.bind('<<ListboxSelect>>', self.selected)
 			
@@ -96,35 +100,46 @@ class InitBank:
 		self.CBA.delete(0, 'end')
 		self.CCD.delete(0, 'end')
 		self.CFD.delete(0, 'end')	
-	
+		
 	def selected(self, *w):
 		try:
-			value=self.bklb.get(self.bklb.curselection())[0]
-			sql="SELECT * FROM INIT_BANK WHERE TITLE=?"
-			get_record=self.conn_db(sql, (value,))
+			#print('7777',self.bklb.get(self.bklb.curselection()))
+			value=self.bklb.get(self.bklb.curselection())
+			sql="SELECT * FROM INIT_BANK WHERE TITLE=? AND AUTH=?"			
+			get_record=self.conn_db(sql, (value,self.usr, ))
+			print('get record', get_record)
 			self.CBS.set(get_record[0][2])
+			#print(self.CBS.get())
 			self.CBBS.set(get_record[0][3])
 			self.CBAS.set(get_record[0][4])
 			self.CCDS.set(get_record[0][5])
 			self.CFDS.set(get_record[0][6])
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
-
+	
+	def build_bklist(self):
+		print("Function Build Bank List")
+		self.bklb.delete(0,'end')
+		GB=self.conn_db(self.getbank, (self.usr,))
+		for x in range(len(GB)):
+			self.bklb.insert(x, GB[x][0])
 		
 	def new_bank(self):	
 		sql='INSERT INTO INIT_BANK (AUTH, TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?, ?,?,?,?,?)'
 		self.conn_db(sql, (self.usr, self.CB.get(), self.CBB.get(), self.CBA.get(), self.CCD.get(), self.CFD.get(),))
 		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
-		
+		#self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
+		self.build_bklist()
 		self.clear_all()
 		
 	def save_bank(self):
 		value=self.bklb.get(self.bklb.curselection())[0]
+		print('value', value)
 		sql='UPDATE INIT_BANK SET TITLE=?, CODE=?, ACCOUNT=?, CUR_DEP=?, FIX_DEP=? WHERE TITLE=? AND AUTH=?'
 		self.conn_db(sql, (self.CBS.get(), self.CBBS.get(), self.CBAS.get(), self.CCDS.get(), self.CFDS.get(), value, self.usr,))
 		#Rebuild list
-		self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
+		self.build_bklist()
+		#self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
 
 		
 	def del_bank(self):
@@ -133,7 +148,8 @@ class InitBank:
 			sql='DELETE FROM INIT_BANK WHERE TITLE=? AND AUTH=?'
 			self.conn_db(sql, (value, self.usr))
 			#Rebuild list
-			self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
+			#self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
+			self.build_bklist()
 			
 			self.clear_all()
 		except:

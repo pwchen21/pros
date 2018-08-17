@@ -33,8 +33,8 @@ class InitCredit:
 		# Create Credit Card List
 		self.cdstr=tk.StringVar()
 		self.getcd='select TYPE from INIT_CREDIT WHERE AUTH=?'
-		#print('data', self.conn_db(self.getcd, (self.usr,)))
-		#print('d:',self.cdstr.set(self.conn_db(self.getcd, (self.usr,))))
+		print('data', self.conn_db(self.getcd, (self.usr,)))
+		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
 		tk.Label(self.IC, text="信用卡列表：").place(x=33, y=10)
 		#print('cdstr:', self.cdstr)
 		self.cdlb=tk.Listbox(self.IC, listvariable=self.cdstr, width=15, height=16)
@@ -175,3 +175,6 @@ class InitCredit:
 			self.clear_all()
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
+
+			
+#InitCredit(1)			
