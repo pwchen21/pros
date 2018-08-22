@@ -1,17 +1,18 @@
 """
-Version:0.0.03
+Version:0.0.04
 Histroy: 
 2018/07/26 - Initial Version
 2018/08/03 - Add User authority
 			Change EDIT/DELETE by ID
 			FIX [F001] Change Modify/Delete According to ID
 2018/08/08 - Improve user authority by logon
+2018/08/22 - Fix F002
 			
 Waiting Imporve / Fix:
 [Fixed-2018080300] F001: Delete/Modify for mobile phone will failed, because "0" will be igonored.
-F002: Can not shows default mail category.
+[Fixed-2018082200]F002: Can not shows default mail category.
 
-Modify Date: 2018/08/08
+Modify Date: 2018/08/22
 """
 
 import pickle
@@ -47,7 +48,9 @@ class SubCategory:
 		# Create Drop Down list for main category
 		sql='SELECT MC_NAME FROM MAIN_CAT WHERE AUTH=?'
 		gr=self.conn_db(sql, (self.usr, ))
-		self.val=tk.StringVar()
+		self.val=tk.StringVar(self.SC)
+		print('val:', self.val)
+		print('gr0', gr[0][0])
 		self.SCMB=ttk.OptionMenu(self.SC, self.val, gr[0], *gr, command=self.getSC)
 		self.SCMB.pack()
 		
