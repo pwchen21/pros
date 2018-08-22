@@ -132,7 +132,7 @@ class InitCredit:
 	
 	def selected(self, *w):
 			self.clear_all()
-		#try:
+		try:
 			value=self.cdlb.get(self.cdlb.curselection())
 			print('value', value)
 			sql="SELECT * FROM INIT_CREDIT WHERE TYPE=? AND AUTH=?"
@@ -151,8 +151,8 @@ class InitCredit:
 				self.CDSTCB.select()
 			else:
 				self.CDSTCB.deselect()
-		#except:
-		#	tk.messagebox.showerror(title='Error', message='Please select record!!')
+		except:
+			tk.messagebox.showerror(title='Error', message='Please select record!!')
 	
 	def build_cdlist(self):
 		print("Function Build Credit List")
