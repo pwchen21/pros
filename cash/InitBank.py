@@ -1,17 +1,17 @@
 """
-Version:0.0.03
+Version:0.0.04
 Histroy: 
 2018/08/01 - Initial Version
 2018/08/03 - Fix delete without item selected will not popup error message
 		   Add User authority
 2018/08/08 - Improve user authority by logon (But Cannot get list by setting)
 2018/08/14 - Trying to FIX F002		   
-2018/08/22 - Fixed F002
+2018/08/22 - Fixed F002.
 		   
 Waiting Imporve / Fix:
 I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
-F002- Cannot get list by setting
+[Fixed-20180822]F002- Cannot get list by setting
 
 Modify Date: 2018/08/08/22
 """
@@ -45,32 +45,32 @@ class InitBank:
 		self.bklb.bind('<<ListboxSelect>>', self.selected)
 			
 		# Create Bank Name
-		self.CBS=tk.StringVar()
+		self.CBS=tk.StringVar(self.IB)
 		tk.Label(self.IB, text="銀行名稱：").place(x=130, y=10)
 		self.CB=tk.Entry(self.IB, width=13, textvariable=self.CBS)
 		self.CB.place(x=200, y=10)
 		
 		# Create Bank code
-		self.CBBS=tk.StringVar()
+		self.CBBS=tk.StringVar(self.IB)
 		tk.Label(self.IB, text="銀行代號：").place(x=130, y=40)
 		self.CBB=tk.Entry(self.IB, width=8, textvariable=self.CBBS)
 		self.CBB.place(x=200, y=40)
 		
 		
 		# Create Bank Account number	
-		self.CBAS=tk.StringVar()
+		self.CBAS=tk.StringVar(self.IB)
 		tk.Label(self.IB, text="銀行帳號:").place(x=180, y=80)
 		self.CBA=tk.Entry(self.IB, width=23, textvariable=self.CBAS)
 		self.CBA.place(x=130, y=100)
 		
 		# Create CURRENT Deposit
-		self.CCDS=tk.StringVar()
+		self.CCDS=tk.StringVar(self.IB)
 		tk.Label(self.IB, text="活期存款：").place(x=130, y=140)
 		self.CCD=tk.Entry(self.IB, width=13, textvariable=self.CCDS)
 		self.CCD.place(x=200, y=140)
 				
 		# Create FIX Deposit
-		self.CFDS=tk.StringVar()
+		self.CFDS=tk.StringVar(self.IB)
 		tk.Label(self.IB, text="定期存款：").place(x=130, y=170)
 		self.CFD=tk.Entry(self.IB, width=13, textvariable=self.CFDS)
 		self.CFD.place(x=200, y=170)
@@ -105,13 +105,10 @@ class InitBank:
 	def selected(self, *w):
 		self.clear_all()
 		try:
-			#print('7777',self.bklb.get(self.bklb.curselection()))
 			value=self.bklb.get(self.bklb.curselection())
 			sql="SELECT * FROM INIT_BANK WHERE TITLE=? AND AUTH=?"			
 			get_record=self.conn_db(sql, (value,self.usr, ))
-			print('get record', get_record)
 			self.CB.insert(0, get_record[0][2])
-			#print(self.CBS.get())
 			self.CBB.insert(0, get_record[0][3])
 			self.CBA.insert(0, get_record[0][4])
 			self.CCD.insert(0, get_record[0][5])
@@ -119,6 +116,7 @@ class InitBank:
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
 	
+	# Rebuild Bank List 
 	def build_bklist(self):
 		print("Function Build Bank List")
 		self.bklb.delete(0,'end')
@@ -130,27 +128,22 @@ class InitBank:
 		sql='INSERT INTO INIT_BANK (AUTH, TITLE, CODE, ACCOUNT, CUR_DEP, FIX_DEP) VALUES (?, ?,?,?,?,?)'
 		self.conn_db(sql, (self.usr, self.CB.get(), self.CBB.get(), self.CBA.get(), self.CCD.get(), self.CFD.get(),))
 		#Rebuild list
-		#self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
 		self.build_bklist()
 		self.clear_all()
 		
 	def save_bank(self):
-		value=self.bklb.get(self.bklb.curselection())[0]
-		print('value', value)
+		value=self.bklb.get(self.bklb.curselection())
 		sql='UPDATE INIT_BANK SET TITLE=?, CODE=?, ACCOUNT=?, CUR_DEP=?, FIX_DEP=? WHERE TITLE=? AND AUTH=?'
 		self.conn_db(sql, (self.CBS.get(), self.CBBS.get(), self.CBAS.get(), self.CCDS.get(), self.CFDS.get(), value, self.usr,))
 		#Rebuild list
 		self.build_bklist()
-		#self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
-
 		
 	def del_bank(self):
 		try:
-			value=self.bklb.get(self.bklb.curselection())[0]
+			value=self.bklb.get(self.bklb.curselection())
 			sql='DELETE FROM INIT_BANK WHERE TITLE=? AND AUTH=?'
 			self.conn_db(sql, (value, self.usr))
 			#Rebuild list
-			#self.bankstr.set(self.conn_db(self.getbank, (self.usr,)))
 			self.build_bklist()
 			
 			self.clear_all()

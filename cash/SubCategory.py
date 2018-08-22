@@ -9,6 +9,7 @@ Histroy:
 			
 Waiting Imporve / Fix:
 [Fixed-2018080300] F001: Delete/Modify for mobile phone will failed, because "0" will be igonored.
+F002: Can not shows default mail category.
 
 Modify Date: 2018/08/08
 """

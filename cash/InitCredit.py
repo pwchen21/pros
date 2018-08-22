@@ -1,14 +1,15 @@
 """
-Version:0.0.02
+Version:0.0.03
 Histroy: 
 2018/08/03 - Initial Version with User Authority
 2018/08/08 - Improve user authority by logon (But Cannot get list by setting)
-
+2018/08/22 - F002 Fixed.
 
 Waiting Imporve / Fix:
 I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
-F002- Cannot get list by setting
+[Fixed-20180822]F002- Cannot get list by setting
+
 
 Modify Date: 2018/08/08
 """
@@ -43,13 +44,13 @@ class InitCredit:
 		self.cdlb.bind('<<ListboxSelect>>', self.selected)
 			
 		# Create Bank Name
-		self.CBS=tk.StringVar()
+		self.CBS=tk.StringVar(self.IC)
 		tk.Label(self.IC, text="銀行名稱：").place(x=130, y=10)
 		self.CBE=tk.Entry(self.IC, width=13, textvariable=self.CBS)
 		self.CBE.place(x=200, y=10)
 			
 		# Create credit card name
-		self.CDNS=tk.StringVar()
+		self.CDNS=tk.StringVar(self.IC)
 		tk.Label(self.IC, text="卡種：").place(x=130, y=40)
 		self.CDNE=tk.Entry(self.IC, width=8, textvariable=self.CDNS)
 		self.CDNE.place(x=200, y=40)
@@ -63,31 +64,31 @@ class InitCredit:
 		self.CDTOM.place(x=200, y=70)
 		
 		# Create Credit card number
-		self.CDCS=tk.StringVar()
+		self.CDCS=tk.StringVar(self.IC)
 		tk.Label(self.IC, text="信用卡號：").place(x=180, y=100)
 		self.CDCE=tk.Entry(self.IC, width=23, textvariable=self.CDCS)
 		self.CDCE.place(x=130, y=130)
 		
 		# Create CRC
-		self.CDCRCS=tk.StringVar()
+		self.CDCRCS=tk.StringVar(self.IC)
 		tk.Label(self.IC, text="檢查碼").place(x=130, y=170)
 		self.CDCRCE=tk.Entry(self.IC, width=13, textvariable=self.CDCRCS)
 		self.CDCRCE.place(x=200, y=170)
 		
 		# Create Close Date
-		self.CDCLS=tk.StringVar()
+		self.CDCLS=tk.StringVar(self.IC)
 		tk.Label(self.IC, text="結帳日").place(x=130, y=200)
 		self.CDCLE=tk.Entry(self.IC, width=13, textvariable=self.CDCLS)
 		self.CDCLE.place(x=200, y=200)
 		
 		# Create PAY Date
-		self.CDPDS=tk.StringVar()
+		self.CDPDS=tk.StringVar(self.IC)
 		tk.Label(self.IC, text="付款日").place(x=130, y=230)
 		self.CDPDE=tk.Entry(self.IC, width=13, textvariable=self.CDPDS)
 		self.CDPDE.place(x=200, y=230)
 		
 		# Create STATUS 
-		self.CDSTS=tk.StringVar()
+		self.CDSTS=tk.StringVar(self.IC)
 		self.CDSTS.set('N')
 		tk.Label(self.IC, text="啟用").place(x=130, y=260)
 		self.CDSTCB=tk.Checkbutton(self.IC, offvalue='N', onvalue='Y', variable=self.CDSTS)
@@ -156,9 +157,9 @@ class InitCredit:
 	def build_cdlist(self):
 		print("Function Build Credit List")
 		self.cdlb.delete(0,'end')
-		GB=self.conn_db(self.getcd, (self.usr,))
-		for x in range(len(GB)):
-			self.cdlb.insert(x, GB[x][0])
+		GC=self.conn_db(self.getcd, (self.usr,))
+		for x in range(len(GC)):
+			self.cdlb.insert(x, GC[x][0])
 
 	
 	def new_credit(self):	
@@ -171,7 +172,8 @@ class InitCredit:
 
 		
 	def save_credit(self):
-		value=self.cdlb.get(self.cdlb.curselection())[0]
+		value=self.cdlb.get(self.cdlb.curselection())
+		print('value', value)
 		sql='UPDATE INIT_CREDIT SET BANK=?, TYPE=?, MVF=?, NUM=?, IDENTIFY=?, CYCLE=?, PAYDAY=?, STATUS=? WHERE TYPE=? AND AUTH=?'
 		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get(), value, self.usr))
 		#Rebuild & clear get entry
@@ -181,12 +183,12 @@ class InitCredit:
 		
 	def del_credit(self):
 		try:
-			value=self.cdlb.get(self.cdlb.curselection())[0]
+			value=self.cdlb.get(self.cdlb.curselection())
 			sql='DELETE FROM INIT_CREDIT WHERE TYPE=? AND AUTH=?'
 			self.conn_db(sql, (value, self.usr))
 			#Rebuild list
-			self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
-			
+			#self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
+			self.build_cdlist()
 			self.clear_all()
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
