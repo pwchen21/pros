@@ -11,7 +11,7 @@ F001- Shows select record when using Tab(or multiple value selected) to change c
 [Fixed-20180822]F002- Cannot get list by setting
 
 
-Modify Date: 2018/08/08
+Modify Date: 2018/08/22
 """
 
 import pickle
@@ -25,7 +25,7 @@ class InitCredit:
 	def __init__(self,uid):
 		# Temp user, this will be replace by variable 
 		self.usr=uid
-		print('IC:', self.usr)
+		#print('IC:', self.usr)
 		# Create InitCredit
 		self.IC=tk.Tk()
 		self.IC.title("Init/Edit Credit")
@@ -34,7 +34,7 @@ class InitCredit:
 		# Create Credit Card List
 		self.cdstr=tk.StringVar()
 		self.getcd='select TYPE from INIT_CREDIT WHERE AUTH=?'
-		print('data', self.conn_db(self.getcd, (self.usr,)))
+		#print('data', self.conn_db(self.getcd, (self.usr,)))
 		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
 		tk.Label(self.IC, text="信用卡列表：").place(x=33, y=10)
 		#print('cdstr:', self.cdstr)
@@ -60,6 +60,7 @@ class InitCredit:
 		option=['Master', 'VISA', 'JCB']
 		self.get_card_type(option[0])
 		tk.Label(self.IC, text="卡別：").place(x=130, y=70)
+		#print('op1', option[0])
 		self.CDTOM=ttk.OptionMenu(self.IC, self.CDTS, option[0], *option, command=self.get_card_type)
 		self.CDTOM.place(x=200, y=70)
 		
@@ -131,14 +132,14 @@ class InitCredit:
 	
 	
 	def selected(self, *w):
-			self.clear_all()
+		self.clear_all()
 		try:
 			value=self.cdlb.get(self.cdlb.curselection())
-			print('value', value)
+			#print('value', value)
 			sql="SELECT * FROM INIT_CREDIT WHERE TYPE=? AND AUTH=?"
 			get_record=self.conn_db(sql, (value, self.usr,))			
 			#print(get_record)
-			print('get record', get_record)
+			#print('get record', get_record)
 			self.CBE.insert(0, get_record[0][2])
 			self.CDNE.insert(0, get_record[0][3])
 			self.CDTS.set(get_record[0][4])
@@ -155,7 +156,7 @@ class InitCredit:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
 	
 	def build_cdlist(self):
-		print("Function Build Credit List")
+		#print("Function Build Credit List")
 		self.cdlb.delete(0,'end')
 		GC=self.conn_db(self.getcd, (self.usr,))
 		for x in range(len(GC)):
@@ -173,7 +174,7 @@ class InitCredit:
 		
 	def save_credit(self):
 		value=self.cdlb.get(self.cdlb.curselection())
-		print('value', value)
+		#print('value', value)
 		sql='UPDATE INIT_CREDIT SET BANK=?, TYPE=?, MVF=?, NUM=?, IDENTIFY=?, CYCLE=?, PAYDAY=?, STATUS=? WHERE TYPE=? AND AUTH=?'
 		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get(), value, self.usr))
 		#Rebuild & clear get entry
