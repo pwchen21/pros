@@ -6,13 +6,14 @@ Histroy:
 		   Add User authority
 2018/08/08 - Improve user authority by logon (But Cannot get list by setting)
 2018/08/14 - Trying to FIX F002		   
+2018/08/22 - Fixed F002
 		   
 Waiting Imporve / Fix:
 I001- Should EDIT/DELETE by ID
 F001- Shows select record when using Tab(or multiple value selected) to change column 
 F002- Cannot get list by setting
 
-Modify Date: 2018/08/08/14
+Modify Date: 2018/08/08/22
 """
 
 import pickle
@@ -102,18 +103,19 @@ class InitBank:
 		self.CFD.delete(0, 'end')	
 		
 	def selected(self, *w):
+		self.clear_all()
 		try:
 			#print('7777',self.bklb.get(self.bklb.curselection()))
 			value=self.bklb.get(self.bklb.curselection())
 			sql="SELECT * FROM INIT_BANK WHERE TITLE=? AND AUTH=?"			
 			get_record=self.conn_db(sql, (value,self.usr, ))
 			print('get record', get_record)
-			self.CBS.set(get_record[0][2])
+			self.CB.insert(0, get_record[0][2])
 			#print(self.CBS.get())
-			self.CBBS.set(get_record[0][3])
-			self.CBAS.set(get_record[0][4])
-			self.CCDS.set(get_record[0][5])
-			self.CFDS.set(get_record[0][6])
+			self.CBB.insert(0, get_record[0][3])
+			self.CBA.insert(0, get_record[0][4])
+			self.CCD.insert(0, get_record[0][5])
+			self.CFD.insert(0, get_record[0][6])
 		except:
 			tk.messagebox.showerror(title='Error', message='Please select record!!')
 	

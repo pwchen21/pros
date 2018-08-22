@@ -161,4 +161,3 @@ class SubCategory:
 		else:
 			tk.messagebox.showerror(title='Error', message='Please correct record!!')
 		self.rebuildsb(sqlr)
-

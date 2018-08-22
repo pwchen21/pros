@@ -109,8 +109,7 @@ class MainCategory():
 	def add_main(self,mce):
 	#Function Add Main Category
 		sql="INSERT INTO MAIN_CAT (AUTH, MC_NAME) VALUES (?, ?)"
-		self.conn_db(sql, (self.usr, mce, ))
-		
+		self.conn_db(sql, (self.usr, mce, ))		
 		self.rebuild_tree()
 	
 	#Function Edit Main Category

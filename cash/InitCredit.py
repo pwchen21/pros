@@ -37,7 +37,8 @@ class InitCredit:
 		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))
 		tk.Label(self.IC, text="信用卡列表：").place(x=33, y=10)
 		#print('cdstr:', self.cdstr)
-		self.cdlb=tk.Listbox(self.IC, listvariable=self.cdstr, width=15, height=16)
+		self.cdlb=tk.Listbox(self.IC, width=15, height=16)
+		self.build_cdlist()
 		self.cdlb.place(x=10, y=30)
 		self.cdlb.bind('<<ListboxSelect>>', self.selected)
 			
@@ -54,7 +55,7 @@ class InitCredit:
 		self.CDNE.place(x=200, y=40)
 			
 		# Create Credit card type	
-		self.CDTS=tk.StringVar()
+		self.CDTS=tk.StringVar(self.IC)
 		option=['Master', 'VISA', 'JCB']
 		self.get_card_type(option[0])
 		tk.Label(self.IC, text="卡別：").place(x=130, y=70)
@@ -129,30 +130,43 @@ class InitCredit:
 	
 	
 	def selected(self, *w):
-		try:
-			value=self.cdlb.get(self.cdlb.curselection())[0]
+			self.clear_all()
+		#try:
+			value=self.cdlb.get(self.cdlb.curselection())
+			print('value', value)
 			sql="SELECT * FROM INIT_CREDIT WHERE TYPE=? AND AUTH=?"
-			get_record=self.conn_db(sql, (value, self.usr,))
+			get_record=self.conn_db(sql, (value, self.usr,))			
 			#print(get_record)
-			
-			self.CBS.set(get_record[0][2])
-			self.CDNS.set(get_record[0][3])
+			print('get record', get_record)
+			self.CBE.insert(0, get_record[0][2])
+			self.CDNE.insert(0, get_record[0][3])
 			self.CDTS.set(get_record[0][4])
-			self.CDCS.set(get_record[0][5])
-			self.CDCRCS.set(get_record[0][6])
-			self.CDCLS.set(get_record[0][7])
-			self.CDPDS.set(get_record[0][8])
-			self.CDSTS.set(get_record[0][9])
+			self.CDCE.insert(0, get_record[0][5])
+			self.CDCRCE.insert(0, get_record[0][6])
+			self.CDCLE.insert(0, get_record[0][7])
+			self.CDPDE.insert(0, get_record[0][8])
 			
-		except:
-			tk.messagebox.showerror(title='Error', message='Please select record!!')
+			if get_record[0][9] == "Y":
+				self.CDSTCB.select()
+			else:
+				self.CDSTCB.deselect()
+		#except:
+		#	tk.messagebox.showerror(title='Error', message='Please select record!!')
 	
-		
+	def build_cdlist(self):
+		print("Function Build Credit List")
+		self.cdlb.delete(0,'end')
+		GB=self.conn_db(self.getcd, (self.usr,))
+		for x in range(len(GB)):
+			self.cdlb.insert(x, GB[x][0])
+
+	
 	def new_credit(self):	
 		sql='INSERT INTO INIT_CREDIT (AUTH, BANK, TYPE, MVF, NUM, IDENTIFY, CYCLE, PAYDAY, STATUS) VALUES (?, ?,?,?,?,?,?,?,?)'
 		self.conn_db(sql, (self.usr, self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get()))
 		#Rebuild list
-		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))		
+		#self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))		
+		self.build_cdlist()
 		self.clear_all()
 
 		
@@ -161,7 +175,8 @@ class InitCredit:
 		sql='UPDATE INIT_CREDIT SET BANK=?, TYPE=?, MVF=?, NUM=?, IDENTIFY=?, CYCLE=?, PAYDAY=?, STATUS=? WHERE TYPE=? AND AUTH=?'
 		self.conn_db(sql, (self.CBE.get(), self.CDNE.get(), self.CDTS.get(), self.CDCE.get(), self.CDCRCE.get(), self.CDCLE.get(), self.CDPDE.get(), self.CDSTS.get(), value, self.usr))
 		#Rebuild & clear get entry
-		self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))	
+		#self.cdstr.set(self.conn_db(self.getcd, (self.usr,)))	
+		self.build_cdlist()
 		self.clear_all()
 		
 	def del_credit(self):
