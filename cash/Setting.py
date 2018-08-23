@@ -20,6 +20,7 @@ import MainCategory
 import SubCategory
 import InitBank
 import InitCredit
+import DateTime
 
 class SettingPage():
 	
@@ -44,6 +45,10 @@ class SettingPage():
 		
 		self.subC=tk.Button(self.SP, text="Init Bank", command=self.IB)
 		self.subC.place(x=150, y=90, width=90)
+
+		self.subC=tk.Button(self.SP, text="Date/Time", command=self.DT)
+		self.subC.place(x=30, y=130, width=90)
+		
 		
 		self.SP.mainloop()
 		
@@ -58,3 +63,7 @@ class SettingPage():
 		
 	def IB(self):
 		InitBank.InitBank(self.usr)
+		
+	def DT(self):
+		DateTime.DateTime(self.usr)
+		
