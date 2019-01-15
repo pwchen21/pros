@@ -69,4 +69,3 @@ class DateTime:
 		self.tm.set(str(datetime.datetime.now().time().strftime('%H:%M:%S')))
 	
 		
-DateTime(1)

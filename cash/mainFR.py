@@ -40,7 +40,7 @@ def main(uid):
 		Setting.SettingPage(uid)
 	
 	
-	bal=tk.Button(tko, text='Balanced', command=balanced)
+	bal=tk.Button(tko, text='Bank / Balanced', command=balanced)
 	bal.place(x=60, y=20)
 
 	daily=tk.Button(tko, text='Daily', command=daily)
