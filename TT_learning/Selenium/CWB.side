@@ -1,0 +1,62 @@
+{
+  "id": "0781c149-7dbb-4661-8491-531b9cfd756b",
+  "version": "2.0",
+  "name": "CWB",
+  "url": "https://www.cwb.gov.tw",
+  "tests": [{
+    "id": "0ddf9f51-42e8-491d-9ad6-37941716eb9a",
+    "name": "CWB1",
+    "commands": [{
+      "id": "094d3f22-8219-4740-be09-3f8855ca9bde",
+      "comment": "",
+      "command": "open",
+      "target": "/V8/C/index.html",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "51df32ce-e63b-41da-8710-c41ab2a92065",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "a4ddfa66-2148-4c49-ad3f-47b64d9a401a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=網站導覽",
+      "targets": [
+        ["linkText=網站導覽", "linkText"],
+        ["css=.hidden-sm:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'網站導覽')]", "xpath:link"],
+        ["xpath=//header[@id='header']/div/div/div/div/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=//a[contains(@href, '/V8/C/sitemap.html')]", "xpath:href"],
+        ["xpath=//li[4]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'網站導覽')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "260621be-2cf7-404d-aac5-a92d1a6d6e91",
+      "comment": "",
+      "command": "click",
+      "target": "css=#collapse-3-1 li:nth-child(1) span",
+      "targets": [
+        ["css=#collapse-3-1 li:nth-child(1) span", "css:finder"],
+        ["xpath=//div[@id='collapse-3-1']/div/div/div/ul/li/a/span", "xpath:idRelative"],
+        ["xpath=//div[3]/div/div/div[2]/div/div/div/ul/li/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'3-1-1. 海水浴場')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0b79fdd5-6ca3-46fe-b39a-a49277f2dcd8",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["0ddf9f51-42e8-491d-9ad6-37941716eb9a"]
+  }],
+  "urls": ["https://www.cwb.gov.tw/"],
+  "plugins": []
+}
