@@ -1,0 +1,10 @@
+    
+Git Command
+Author: Betsy Chen
+
+git init
+git add <filename>
+git commit -m "commit message"
+git config --global user.email "<mail>"
+git config --list
+git push -u origin master
