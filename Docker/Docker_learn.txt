@@ -1,0 +1,35 @@
+[Install]
+1. Update curl package 
+	sudo apt-get install curl
+2. Install Docker
+	curl -fsSL https://get.docker.com/ | sh  
+3. Check Docker installed
+	docker -v
+
+[Example for run a simple docker]
+1. Creat a PHP or something
+2. Create Docker needed file
+	A. Architecture
+		+dk_test folder
+		   |_ Dockerfile
+		   |_ src folder <put your index here>
+		   
+	B. Docker File
+		FROM php:7.2-apache  <locate on Docker hub>
+		COPY src/ /var/www/html/
+		EXPOSE 80
+	C. docker build -t <title> . #. is docker file path
+	D. docker run -p 80:80 <title>  # Page will not change, even if you change the source file
+	E. Another way 
+		docker run -p 80:80 -v /dk-test/src/:/var/www/html dktest
+								<full path>		<Image path>
+	    # Page will be changed when you change the source file
+		
+	Note1: If failed please try command:docker login	
+
+[Some Command]
+1. list Images : docker images
+2. list container: docker ps -a	
+3. delete container: docker rm <Contanier ID>
+4. delete image: docker -rmi <image ID>  (-f force)
+5. find mount: docker inspect -f '{{.Mounts}}' <container ID>
