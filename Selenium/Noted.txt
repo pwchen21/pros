@@ -1,2 +1,10 @@
-Title: Selenium
+Title: Selenium / Robot Framework
 Author: PWCHEN
+
+1. Robot Framework Install
+   a. https://www.ibm.com/developerworks/cn/opensource/os-cn-robot-framework/index.html
+   b. ride.py -> Open GUI
+   c. New Directory / New Suite / New file -> Laod Library (Selenium2Library) 
+      -> Add Test Case -> Add step (Input selenium -> ctrl + alt + space can load function) -> Save to file(.rob)
+	
+2. side file => Output from selenium

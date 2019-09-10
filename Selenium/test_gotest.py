@@ -23,4 +23,3 @@ class TestGotest():
     self.driver.find_element(By.NAME, "q").send_keys("test")
     self.driver.find_element(By.NAME, "q").send_keys(Keys.ENTER)
     self.driver.find_element(By.CSS_SELECTOR, ".g:nth-child(1) .LC20lb").click()
-  
