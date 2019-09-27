@@ -2,9 +2,47 @@
 Git Command
 Author: Betsy Chen
 
+https://blog.longwin.com.tw/2009/05/git-learn-initial-command-2009/
+
 git init
+git clone <path> <local folder>
 git add <filename>
 git commit -m "commit message"
+git push -u origin master
+-
 git config --global user.email "<mail>"
 git config --list
+--
+#Never Login to github
+1. Generate key if not exists : ssh-keygen -t rsa -b 4096 -C "gmail"
+2. Start ssh-agent :  eval `ssh-agent -s`
+3. Add key to github 
+   User -> Setting -> SSH and GPG keys -> Add key
+4. Test key works -> SSH -T git@github.com
+
+--
+#Add file by command
+git add <filename>
+git commit -m "commit message"
 git push -u origin master
+
+--
+#Remove file by command
+git rm
+git commit -m "commit message"
+git push -u origin master
+
+--
+#Fix Issue
+=> Commit with message "Fixed #3"
+
+--
+# Git-Remote
+git remote show origin
+git remote add origin URL
+git remote rm origin
+git remote set-url origin URL
+git remote set-url origin git@github.com:<Name>/<Repostory Name>.git
+https://github.com/<Name>/<Repostory Name>/
+
+
