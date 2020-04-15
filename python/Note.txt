@@ -1,1 +1,2 @@
-pip list
+1. pip list
+
