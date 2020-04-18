@@ -1,0 +1,23 @@
+[Python version]
+3.7.6
+set python & script to path
+
+[pre-install]
+pip install setuptools robotframework wxPython robotframework-ride
+
+[After install]
+cmd: pip list
+
+Package             Version
+------------------- -----------
+numpy               1.18.1
+Pillow              7.0.0
+pip                 19.3.1
+Pygments            2.5.2
+Pypubsub            4.0.3
+pywin32             227
+robotframework      3.1.2
+robotframework-ride 1.7.4
+setuptools          41.2.0
+six                 1.13.0
+wxPython            4.0.7.post2
