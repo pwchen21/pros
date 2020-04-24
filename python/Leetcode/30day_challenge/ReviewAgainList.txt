@@ -1,5 +1,8 @@
-		  Status		Reviewed	Review Date
+		  Status		Reviewed	Review Date		Note
 0419	Not Review
 0418	Not Review
 0417	Not Review
 0420	Not Review
+0421	Not Review
+0422	Not Review 		  Yes			0423	 #Time Exceed #Use dictionary to record subarray first
+0424	Reviewed		  Yes			0425 	 #Low efficiecy : solution - "OrderedDict"
