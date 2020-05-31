@@ -2,6 +2,11 @@
 Git Command
 Author: Betsy Chen
 
+# Install
+sudo apt-get install git-all
+
+--
+#Basic command
 https://blog.longwin.com.tw/2009/05/git-learn-initial-command-2009/
 
 git init
@@ -12,6 +17,7 @@ git push -u origin master
 -
 git config --global user.email "<mail>"
 git config --list
+
 --
 #Never Login to github
 1. Generate key if not exists : ssh-keygen -t rsa -b 4096 -C "gmail"

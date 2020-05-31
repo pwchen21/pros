@@ -1,0 +1,4 @@
+1. Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
+
+Check if run with root?
+If yes, remove lock file.
