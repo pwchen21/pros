@@ -9,14 +9,17 @@ sudo apt-get install git-all
 #Basic command
 https://blog.longwin.com.tw/2009/05/git-learn-initial-command-2009/
 
+
+-
+git config --global user.email "<mail>"
+git config --list
+-
 git init
 git clone <path> <local folder>
 git add <filename>
 git commit -m "commit message"
 git push -u origin master
--
-git config --global user.email "<mail>"
-git config --list
+
 
 --
 #Never Login to github
