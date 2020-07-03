@@ -19,9 +19,11 @@
 		COPY src/ /var/www/html/
 		EXPOSE 80
 	C. docker build -t <title> . #. is docker file path
-	D. docker run -p 80:80 <title>  # Page will not change, even if you change the source file
+	D. docker run -p 8080:80 <title>  
+		# Page will not change, even if you change the source file
+		# Map port 8080 on local machine to port 80 inside of the container
 	E. Another way 
-		docker run -p 80:80 -v /dk-test/src/:/var/www/html dktest
+		docker run -p 8080:80 -v /dk-test/src/:/var/www/html dktest
 								<full path>		<Image path>
 	    # Page will be changed when you change the source file
 		
@@ -30,6 +32,8 @@
 [Some Command]
 1. list Images : docker images
 2. list container: docker ps -a	
-3. delete container: docker rm <Contanier ID>
-4. delete image: docker -rmi <image ID>  (-f force)
-5. find mount: docker inspect -f '{{.Mounts}}' <container ID>
+3. start/stop container: docker stop <containger id>
+4. delete container: docker rm <Contanier ID>
+5. delete image: docker -rmi <image ID>  (-f force)
+6. find mount: docker inspect -f '{{.Mounts}}' <container ID>
+

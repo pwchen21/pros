@@ -1,0 +1,3 @@
+		  Status			Reviewed	Review Date		Note
+0702	 Reviewed			  Yes        0703			Tree Structure		
+0703	 ImproveNeeded		  NO		  --			Copy list is insufficient										

@@ -1,0 +1,3 @@
+VBoxManage clonemedium "source.vmdk" "cloned.vdi" --format vdi
+VBoxManage modifymedium "cloned.vdi" --resize 51200
+VBoxManage clonemedium "cloned.vdi" "resized.vmdk" --format vmdk

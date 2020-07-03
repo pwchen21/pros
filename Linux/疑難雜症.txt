@@ -2,3 +2,12 @@
 
 Check if run with root?
 If yes, remove lock file.
+
+2. Extend root partition
+
+If VirtualBox & VMDK, resize first.
+VBoxManage clonemedium "source.vmdk" "cloned.vdi" --format vdi
+VBoxManage modifymedium "cloned.vdi" --resize 51200
+VBoxManage clonemedium "cloned.vdi" "resized.vmdk" --format vmdk
+
+Download GParted. Use GParted to re-allocate partition size.
