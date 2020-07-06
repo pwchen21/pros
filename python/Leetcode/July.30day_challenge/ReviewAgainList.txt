@@ -1,3 +1,4 @@
-		  Status			Reviewed	Review Date		Note
-0702	 Reviewed			  Yes        0703			Tree Structure		
-0703	 ImproveNeeded		  NO		  --			Copy list is insufficient										
+		 Status				Reviewed		Review Date			Note
+0702	Reviewed				Yes				0703		Tree Structure		
+0703	ImproveNeeded			NO				--			Copy list is insufficient			
+0704	Reviewed				Yes				0704		0704_gAns Good solution reviewed  / 0704 -> Time exceed		
