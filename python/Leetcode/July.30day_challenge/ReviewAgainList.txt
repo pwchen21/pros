@@ -1,4 +1,16 @@
 		 Status				Reviewed		Review Date			Note
 0702	Reviewed				Yes				0703		Tree Structure		
-0703	ImproveNeeded			NO				--			Copy list is insufficient			
+0703	Improve Needed			No				--			Copy list is insufficient			
 0704	Reviewed				Yes				0704		0704_gAns Good solution reviewed  / 0704 -> Time exceed		
+0707	Improved Needed			No				--			Sumitted Accepted but beat only 27%.
+0708    Improved Needed			No				--			0708_gAns Good solution not review.  / 0708 -> Time exceed	
+0709	Not Review				No				--			Tree Structure 
+0710	Not Review				No				--			LinkList structure
+0711	Not Review				No				--			0711_gAns
+0717	Not Review				No				--			0717.py Accepted, put insufficient.
+0718	Not Review				No				--			0718.py Not Accepted. Logic need to be reviewed
+0720	Not Review				No				--			0720_gAns.py, linklist
+0721	Not Review				No				--			0721_gAns.py, word search
+0722	Not Review				No				--			0722_gAns.py, Tree
+0724	Not Review				No				--			0724_Ans.py
+0725	Not Review				No				--			0725_Ans.py
