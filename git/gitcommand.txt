@@ -55,10 +55,29 @@ git remote set-url origin git@github.com:<Name>/<Repostory Name>.git
 https://github.com/<Name>/<Repostory Name>/
 root@ub01-VM01:/home/ub01/groot/GitTest# git remote -v
 
-# Add branch
+# branch related
+- Create Branch
 git branch <new branch name>
 git push --set-upstream origin <new branch name>  //branch created on github
 
-git merge <branch>
+
+- Pull branch
+git checkout origin/bug03
+git branch -b bug03
+
+or
+
+git checkout origin/bug04 -b bug04
+
+
+
+- Delete brache
+git -d branch 
+
+- Git Merge
+1. Checkout Master
+	git checkout master
+	
+2. git merge <branch>
 
 
