@@ -1,0 +1,42 @@
+{
+  "id": "ba2d1301-4102-4662-9c0d-0c39ad921cba",
+  "version": "2.0",
+  "name": "test",
+  "url": "http://www.google.com",
+  "tests": [{
+    "id": "e3eecbf1-25df-498b-b5a6-d0b1d806b1cb",
+    "name": "tc1",
+    "commands": [{
+      "id": "224fbbc2-df3e-49bf-b1e8-af138fa90b56",
+      "comment": "",
+      "command": "open",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "28f60ec9-ddde-425b-81d8-d0ca40c55459",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "",
+      "targets": [],
+      "value": "900x700"
+    }, {
+      "id": "7722b80f-a3ca-4cd4-870a-969f7af15ea7",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "e2dfad05-d0f5-4f06-8f78-d02210395815",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["e3eecbf1-25df-498b-b5a6-d0b1d806b1cb"]
+  }],
+  "urls": ["http://www.google.com/"],
+  "plugins": []
+}

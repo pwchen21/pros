@@ -1,0 +1,104 @@
+{
+  "id": "02dbf970-746d-4b38-a7a9-307746c85298",
+  "version": "2.0",
+  "name": "google",
+  "url": "https://www.google.com",
+  "tests": [{
+    "id": "ff719a84-2de4-4936-b4c9-108c1279f3f6",
+    "name": "tc1",
+    "commands": [{
+      "id": "ac47e628-c41b-4fa9-bcb8-27871be5356b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "9139f106-759e-4ce6-b61c-ff21648e40b4",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1346x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6327f052-54e8-47db-8577-f0360893c416",
+      "comment": "",
+      "command": "click",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//form[@id='tsf']/div[2]/div/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b584fec-0ebf-45ac-ae21-939c7fe4eb92",
+      "comment": "",
+      "command": "type",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//form[@id='tsf']/div[2]/div/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "5f79b70b-fdf6-4bdd-8ec8-126e71031118",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//form[@id='tsf']/div[2]/div/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "4233ebd6-6a3c-48b9-a6e4-cdce8dbeef6d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.rc:nth-child(2) .LC20lb > span",
+      "targets": [
+        ["css=.rc:nth-child(2) .LC20lb > span", "css:finder"],
+        ["xpath=//div[@id='rso']/div[2]/div/div/a/h3/span", "xpath:idRelative"],
+        ["xpath=//h3/span", "xpath:position"],
+        ["xpath=//span[contains(.,'test漢語(繁體)翻譯：劍橋詞典 - Cambridge Dictionary')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "246fb5b5-69fb-46a0-bbca-df07c7b44fc5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.vh-a > .hdib",
+      "targets": [
+        ["css=.vh-a > .hdib", "css:finder"],
+        ["xpath=//nav[@id='main-nav']/ul/li/a/span", "xpath:idRelative"],
+        ["xpath=//div/div[2]/nav/ul/li/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "aa7716f2-6dd7-45ea-9d53-83f310d5cc34",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "5ab6769c-e86a-41d8-a88b-f179cf5f8b6e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["ff719a84-2de4-4936-b4c9-108c1279f3f6"]
+  }],
+  "urls": ["https://www.google.com/"],
+  "plugins": []
+}
