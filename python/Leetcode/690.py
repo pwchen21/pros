@@ -12,7 +12,7 @@ class Employee(object):
 class Solution(object):
     def getImportance(self, employees, id):	
         emp=Employee(2,3,1)
-		print emp.id()
-		
+        print emp.id()
+
 Sol=Solution()
 Sol.getImportance([2,3,2])

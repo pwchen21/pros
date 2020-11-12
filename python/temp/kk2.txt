@@ -1,0 +1,24 @@
+
+def solution(N):
+	x = 0
+	for x in N
+	if x <= N:
+		print(x)
+		if (x % 3) == 0:
+			if (x % 5) == 0:
+				if (x % 7)== 0:
+						print ("FizzBuzzWoof")
+				else:
+					print ("FizzBuzz")
+		else:
+			print("Fizz")
+		if ( x % 5) == 0:
+			if (x % 7) == 0:
+				print("BuzzWoof")
+			else:
+				print("Buzz")
+		if (x % 7) == 0:
+			print("woof")
+		
+	x = x + 1
+		

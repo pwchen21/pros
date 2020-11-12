@@ -9,3 +9,5 @@ class Solution(object):
 A=Solution()
 A.testRec(10)
 A.testRec(-5)
+
+print 'abc'

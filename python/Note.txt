@@ -1,3 +1,26 @@
 1. pip list
 
 2. py -2 / py -3 共存
+
+---
+Get python's version
+	import sys
+	print(sys.version)
+
+---
+sublime add python3
+
+D:\tool\other\Sublime Text Build 3211 x64\Data\Packages\User
+
+Tools → Build System → New Build System
+{
+	"cmd":["C:/Python39/python.exe", "-u", "$file"],
+ 	"file_regex": "^[ ]File \"(...?)\", line ([0-9]*)",
+ 	"selector": "source.python"
+}
+
+Save with python3
+
+Select python3 in build system
+
+ctrl + b

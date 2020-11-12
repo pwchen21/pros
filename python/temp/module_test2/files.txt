@@ -1,0 +1,3 @@
+c:\Users\shinako\AppData\Local\Programs\Python\Python35-32\Lib\site-packages\module_test2.py
+c:\Users\shinako\AppData\Local\Programs\Python\Python35-32\Lib\site-packages\__pycache__\module_test2.cpython-35.pyc
+c:\Users\shinako\AppData\Local\Programs\Python\Python35-32\Lib\site-packages\module_test2-0.0.3-py3.5.egg-info

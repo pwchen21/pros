@@ -1,0 +1,5 @@
+python筆記
+
+1. pip intall Script目錄執行pip.exe
+2. 網頁
+	pip.exe install Numpy Jinja2 Six Requests Tornado PyYaml Pandas bokeh DateUtil
