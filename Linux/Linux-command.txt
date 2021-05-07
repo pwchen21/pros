@@ -1,0 +1,102 @@
+Some Linux Command
+-   更改root password 密碼
+sudo passwd 
+
+-   Package相關(安裝搜尋)
+1.  安裝(考慮相依): apt-get install <package name>  
+2.  安裝: pip install <package name>==<version if needed>  
+3.  查尋版本: dpkg -l <package name>
+4.  搜尋: apt-cache search [search item]
+5.  更新: apt-get update
+6.  移除(考慮相依): apt-get remove
+7.  清除下載的暫存(on /var/cache/apt/archives): apt-get clean
+8.  若安裝一直出現錯誤，可以嘗試: killall apt apt-get 再安裝
+9.  查看已安裝pkg: apt list --installed
+
+-   ls指令
+1.  -l : 檔案與目錄
+2.  -a: 隱藏檔案與目錄
+3.  -R: 子目錄的檔案
+4.  -S: 大小排序
+5.  -d: 列出目錄
+
+-   解壓縮指令
+1.  壓　縮：tar -jcv -f filename.tar.bz2 要被壓縮的檔案或目錄名稱
+2.  查　詢：tar -jtv -f filename.tar.bz2
+3.  解壓縮：tar -jxv -f filename.tar.bz2 -C 欲解壓縮的目錄
+
+-   VIM 相關
+1.  取代字串: :%s/<被取代>/<取代>/g
+2.  取代字串: :g/被替代的字串/s//新字串/
+3.  複製貼上: dd (cut) p(貼上) yy(copy)  V選整行 y複製 
+4.  比較差異: vim -d [file1] [file2]
+
+-   網路相關
+1.  重啟dhcp server: /etc/init.d/isc-dhcp-server restart 
+2.  Get dhcp: dhclient <network interface>
+3.  重啟網路: /etc/init.d/networking restart
+4.  DNS 設定: /etc/resolv.conf
+5.  設定network interface: /etc/network/interface
+6.  找錯IP: /etc/udev/ruled.d/70-persistent-net.rules
+7.  Bridge: 
+    v   brctl addbr <name>   
+    v   brctl addif br0 eth0
+    v   brctl show ifconfig eth1 0.0.0.0
+
+-   Mount
+mount <IP>:<遠端路徑> <本端路徑>
+example:  mount 10.103.1.249:/nfs_public /mnt/nfs_public
+
+-   Copy ISO to USB (2 method)
+1.  sudo dd if=[iso path] of=dev/sdb bs=4k(1M)
+2.  cat [iso path] > /dev/sdb
+
+-   查看process
+1.  ps aux |grep <process name>
+2.  ps -ef |grep <process name>
+
+-   Kill Process
+Kill -9 pid
+
+-   開ssh
+1.  "apt-get install synaptic"
+2.  "synaptic" >> ssh install
+3.  remove # from /etc/ssh/sshd_config 22 
+4.  sudo /etc/init.d/ssh restart
+5.  sshd-config PermitRootLogin yes(no neccessary)
+
+-   ln
+1.  指向同一個檔案
+原始檔: test.sh
+Link :   ln test.sh <filename(not exist)>
+Check: ln -i <filename> #ID會一樣
+2.  Link到某個檔案
+原始檔: test.sh
+Link :   ln test.sh <filename(not exist)>
+Check: ln -i <filename> #ID不一樣, 可以replace
+<Note> 若安裝兩個版本python可使用以下來更改預設版本
+   ln -s /usr/bin/python3.5<欲設為預設的版本> /usr/bin/python
+
+-   權限 
+<檔案類型> <u:檔案擁有者權限rwx><g:檔案所屬群組權限rwx><o:其它使用者權限rwx>
+1.  更改權限方式
+r=4 w=2 x=1
+Ex. chmod 777 <file name>
+
+2.  使用代號 
+Ex. chmod u=rx,go=rwx <filename>
+
+
+-   查詢DISK UUID
+ls -lh /dev/disk/by-uuid
+
+-   開機掛載硬碟
+1.  先查詢UUID by ls -lh /dev/disk/by-uuid
+2.  Edit /etc/fstab
+3.  依造所需資訊填入(建議使用複製貼上，避免格式錯誤)
+<file system>  Device UUID on step1
+<mount point> Where to mount
+<type> ext4 or other type ntfs
+<options> defaults
+<dump> dump no=0 yes=1
+<pass> self-examination no=0 yes=1

@@ -71,7 +71,7 @@ git checkout origin/bug04 -b bug04
 
 
 
-- Delete brache
+- Delete brach
 git -d branch 
 
 - Git Merge
