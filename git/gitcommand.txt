@@ -81,3 +81,16 @@ git -d branch
 2. git merge <branch>
 
 
+- Merge Concept
+1. Create New branch
+    git branch <New Branch Name>
+2. Add Code
+    a. add file if needed (commit -am if modify)
+    b. push to new branch
+3. Merge back
+    git checkout master
+    git merge <new branch>
+    push
+
+- if comflict (need to confirm again)
+    add file first -> modify -> commit -> push
