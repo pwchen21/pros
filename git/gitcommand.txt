@@ -94,3 +94,9 @@ git -d branch
 
 - if comflict (need to confirm again)
     add file first -> modify -> commit -> push
+
+- Conflict
+1. git status
+2. Modify related file
+3. git add modified file
+4. git push

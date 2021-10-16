@@ -35,7 +35,10 @@ sudo passwd
 1.  重啟dhcp server: /etc/init.d/isc-dhcp-server restart 
 2.  Get dhcp: dhclient <network interface>
 3.  重啟網路: /etc/init.d/networking restart
-4.  DNS 設定: /etc/resolv.conf
+4.  DNS 設定: /etc/resolv.conf(old)
+             modify /etc/network/interface
+             <add> dns-nameservers 8.8.8.8
+
 5.  設定network interface: /etc/network/interface
 6.  找錯IP: /etc/udev/ruled.d/70-persistent-net.rules
 7.  Bridge: 

@@ -1,5 +1,6 @@
-A='test'
-A_arr=list(A)
-print(A_arr)
-A_arr.remove(A_arr[0])
-print(A_arr)
+A=[1,23,2,1,23]
+#help(A)
+print(A.index(23))
+
+for x in range(3,10,1):
+    print(x)
