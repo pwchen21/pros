@@ -8,7 +8,7 @@ sudo passwd
 3.  查尋版本: dpkg -l <package name>
 4.  搜尋: apt-cache search [search item]
 5.  更新: apt-get update
-6.  移除(考慮相依): apt-get remove
+6.  移除(考慮相依): apt-get remove  
 7.  清除下載的暫存(on /var/cache/apt/archives): apt-get clean
 8.  若安裝一直出現錯誤，可以嘗試: killall apt apt-get 再安裝
 9.  查看已安裝pkg: apt list --installed

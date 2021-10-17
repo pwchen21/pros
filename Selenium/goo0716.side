@@ -1,0 +1,165 @@
+{
+  "id": "4ef7b7f0-8fd3-4e71-b2db-9afc1a13a656",
+  "version": "2.0",
+  "name": "goo",
+  "url": "https://www.google.com",
+  "tests": [{
+    "id": "1910d780-8339-42ca-a9dc-b868961d01dc",
+    "name": "gotest",
+    "commands": [{
+      "id": "72a577d5-5ae1-4271-a25b-707088c68355",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ddf7a782-10d6-4550-a4cb-d52a7fa9521f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ff394cbd-35fc-4612-82bb-69b5e159ef8b",
+      "comment": "",
+      "command": "type",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//form[@id='tsf']/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "cf7411b6-c7a2-42c9-8a84-8ddfef9967cc",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//form[@id='tsf']/div[2]/div/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "99f2e679-a271-4d0b-abf7-fd2f2af2cb0d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.g:nth-child(1) .LC20lb",
+      "targets": [
+        ["css=.g:nth-child(1) .LC20lb", "css:finder"],
+        ["xpath=//div[@id='rso']/div/div/div/div/div/div/a/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Test - Wikipedia')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "2065b976-26f9-4e57-a152-5c4eef457992",
+    "name": "speedtest",
+    "commands": [{
+      "id": "2cec7b0f-7b9e-4e9e-939b-7c7961e04199",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "26b2ec5b-dc91-4836-aaff-48a393ec01cd",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1366x728",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6478e342-ed32-49c2-9860-4142bc21e4e4",
+      "comment": "",
+      "command": "type",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "test"
+    }, {
+      "id": "407d5e7e-f508-426b-84af-895a8e989d4f",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=q",
+      "targets": [
+        ["name=q", "name"],
+        ["css=.gLFyf", "css:finder"],
+        ["xpath=//input[@name='q']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "257c5e6b-8232-4954-9130-b5871f4ddd81",
+      "comment": "",
+      "command": "click",
+      "target": "css=div:nth-child(2) > .tF2Cxc .LC20lb",
+      "targets": [
+        ["css=div:nth-child(2) > .tF2Cxc .LC20lb", "css:finder"],
+        ["xpath=//div[@id='rso']/div[2]/div/div/div/a/h3", "xpath:idRelative"],
+        ["xpath=//h3", "xpath:position"],
+        ["xpath=//h3[contains(.,'Speedtest by Ookla - The Global Broadband Speed Test')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f87e2219-3292-48cb-a24c-fc0e3755b9b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.start-text",
+      "targets": [
+        ["css=.start-text", "css:finder"],
+        ["xpath=//div[@id='container']/div/div[3]/div/div/div/div[2]/div[3]/div/a/span[4]", "xpath:idRelative"],
+        ["xpath=//span[4]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4564576a-02ef-4869-999b-01bfce4384c6",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "css=.svg-icon-speedtest-logo",
+      "targets": [
+        ["css=.svg-icon-speedtest-logo", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ee3f8db-0214-4a3c-889e-542cc9efcf77",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.svg-icon-speedtest-logo > use",
+      "targets": [
+        ["css=.svg-icon-speedtest-logo > use", "css:finder"]
+      ],
+      "value": ""
+    }, {
+      "id": "951cb419-cf4d-4034-87f3-5fb1c7df1e9f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.svg-icon-speedtest-logo",
+      "targets": [
+        ["css=.svg-icon-speedtest-logo", "css:finder"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "1a7af60f-072f-45b7-b081-5245015fdb24",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["1910d780-8339-42ca-a9dc-b868961d01dc"]
+  }],
+  "urls": ["https://www.google.com/"],
+  "plugins": []
+}

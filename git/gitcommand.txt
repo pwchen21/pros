@@ -100,3 +100,28 @@ git -d branch
 2. Modify related file
 3. git add modified file
 4. git push
+
+- git tag
+    git tag <tag name> # tag and list tag
+    git log --decorate # list tag history
+    ==
+    git tag -am <tag name> <description> # <a> tag name on head <m> description
+    git tag -n  # List all tag and comment
+    ==
+    tag -d <tag name> #delete tag
+    git log --oneline # show git log and hash code
+    == Push tag to remote
+    git push origin <tag name>
+    git push origin --tags
+
+    ==SourceTree get tags
+    command -> git fetch --tags origin
+
+- checkout tag
+    git checkout -b <Branch> [Tag Name]
+
+
+- Error
+    error: you need to resolve your current index first
+    How to Solve: git reset --merge
+
