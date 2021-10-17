@@ -1,0 +1,5 @@
+SonarQube
+
+1. Download
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.8.0.42792.zip
+
