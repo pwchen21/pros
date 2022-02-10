@@ -1,0 +1,257 @@
+{
+  "id": "b28f6587-6408-4e57-927a-429cad3b1ba7",
+  "version": "2.0",
+  "name": "CPBL_1",
+  "url": "https://www.cpbl.com.tw",
+  "tests": [{
+    "id": "8d563fe2-740f-4551-9e56-78dbd6c5b771",
+    "name": "CPBL_TC1",
+    "commands": [{
+      "id": "8cb5263e-c9aa-47e0-a6e8-cbd3f9673a62",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3dcd1605-2b36-4fbf-86e5-89d8e5660c2c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1346x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8f3dd144-336c-4674-84d5-0848082df610",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=賽程",
+      "targets": [
+        ["linkText=賽程", "linkText"],
+        ["css=.sfHover > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'賽程')])[2]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[3]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/schedule')])[2]", "xpath:href"],
+        ["xpath=//nav/div/ul/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "daa77f28-4241-4ea9-a45c-6e35a5c62ef2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=成績看板",
+      "targets": [
+        ["linkText=成績看板", "linkText"],
+        ["css=.sfHover > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'成績看板')])[2]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[4]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/box')])[2]", "xpath:href"],
+        ["xpath=//nav/div/ul/li[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "88bf4c70-7a58-4c86-b089-dd792b3a8b18",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=球隊戰績",
+      "targets": [
+        ["linkText=球隊戰績", "linkText"],
+        ["css=.sfHover > .sf-with-ul", "css:finder"],
+        ["xpath=(//a[contains(text(),'球隊戰績')])[2]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[5]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[5]", "xpath:href"],
+        ["xpath=//nav/div/ul/li[5]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b409143d-8a94-4ed9-9971-3aae53ad53ca",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=本季球隊戰績",
+      "targets": [
+        ["linkText=本季球隊戰績", "linkText"],
+        ["css=.sfHover:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'本季球隊戰績')]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[5]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/standings/season')])[2]", "xpath:href"],
+        ["xpath=//li[5]/ul/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'本季球隊戰績')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a0f2b2d0-e2f2-4540-9e92-73ab1a786053",
+      "comment": "",
+      "command": "click",
+      "target": "id=SeasonCode",
+      "targets": [
+        ["id=SeasonCode", "id"],
+        ["name=SeasonCode", "name"],
+        ["css=#SeasonCode", "css:finder"],
+        ["xpath=//select[@id='SeasonCode']", "xpath:attributes"],
+        ["xpath=//div[@id='bindVue']/div/div/div[2]/select", "xpath:idRelative"],
+        ["xpath=//div[2]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4ef4d8d8-be85-4149-adb4-633d6a897c14",
+      "comment": "",
+      "command": "select",
+      "target": "id=SeasonCode",
+      "targets": [],
+      "value": "label=全年度"
+    }, {
+      "id": "8acab70e-e276-439f-99ef-e6c5794b6d6f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn > input",
+      "targets": [
+        ["css=.btn > input", "css:finder"],
+        ["xpath=//input[@value='查詢']", "xpath:attributes"],
+        ["xpath=//div[@id='bindVue']/div/div/div[4]/input", "xpath:idRelative"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a4594f49-ed59-491c-b97f-166c62b578df",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=特殊統計",
+      "targets": [
+        ["linkText=特殊統計", "linkText"],
+        ["css=.nav_list li:nth-child(2) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'特殊統計')])[2]", "xpath:link"],
+        ["xpath=//div[@id='Content']/div[3]/div/div[2]/ul/li[2]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/standings/special')])[2]", "xpath:href"],
+        ["xpath=//div[2]/ul/li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "068aa2a9-1e63-433e-8cea-e924d5fa99a2",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=球員",
+      "targets": [
+        ["linkText=球員", "linkText"],
+        ["css=.sfHover > .sf-with-ul", "css:finder"],
+        ["xpath=(//a[contains(text(),'球員')])[4]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[7]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[7]", "xpath:href"],
+        ["xpath=//nav/div/ul/li[7]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5fa73b6a-4109-4e53-9020-4dfaede6d26a",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=球員點將錄",
+      "targets": [
+        ["linkText=球員點將錄", "linkText"],
+        ["css=.sfHover:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'球員點將錄')])[2]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[7]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/player')])[3]", "xpath:href"],
+        ["xpath=//li[7]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }, {
+    "id": "d61e64e4-c80b-447b-a9bd-c9bec7d321cc",
+    "name": "CPBL_TC2_player_search",
+    "commands": [{
+      "id": "cf73d2f0-4a99-4a25-ad2a-85abb613508b",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "37b94feb-8900-40ec-96b9-7d15f4e093b2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1346x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3ad280cf-dcc0-4d51-b612-bbebd4766881",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=球員",
+      "targets": [
+        ["linkText=球員", "linkText"],
+        ["css=.sfHover > .sf-with-ul", "css:finder"],
+        ["xpath=(//a[contains(text(),'球員')])[4]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[7]/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, 'javascript:;')])[7]", "xpath:href"],
+        ["xpath=//nav/div/ul/li[7]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "62dd40dc-d71f-4738-8b97-ef5539a0a39b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=球員點將錄",
+      "targets": [
+        ["linkText=球員點將錄", "linkText"],
+        ["css=.sfHover:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'球員點將錄')])[2]", "xpath:link"],
+        ["xpath=//nav[@id='Menu']/div/ul/li[7]/ul/li/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '/player')])[3]", "xpath:href"],
+        ["xpath=//li[7]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ea9a687-4225-4924-a40b-ddccc19bd6cf",
+      "comment": "",
+      "command": "type",
+      "target": "id=keyword",
+      "targets": [],
+      "value": "劉芙豪"
+    }, {
+      "id": "257d6c85-d295-447a-9fda-7a652e0418bd",
+      "comment": "",
+      "command": "click",
+      "target": "id=ui-id-2",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "93805f72-2435-4620-92eb-b5fdd93f9bff",
+      "comment": "",
+      "command": "click",
+      "target": "css=.DistTitle:nth-child(1) select",
+      "targets": [
+        ["css=.DistTitle:nth-child(1) select", "css:finder"],
+        ["xpath=//div[@id='bindVue']/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5d39c56b-20ee-45cf-8a39-36b7310bfc06",
+      "comment": "",
+      "command": "select",
+      "target": "css=.DistTitle:nth-child(1) select",
+      "targets": [],
+      "value": "label=一軍總冠軍賽"
+    }, {
+      "id": "5aecf588-a6c2-43da-839c-2e6fcb05e738",
+      "comment": "",
+      "command": "click",
+      "target": "css=.DistTitle:nth-child(1) input",
+      "targets": [
+        ["css=.DistTitle:nth-child(1) input", "css:finder"],
+        ["xpath=//input[@value='查詢']", "xpath:attributes"],
+        ["xpath=//div[@id='bindVue']/div/div/div[2]/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "c7f18277-6b78-48e8-babf-34f3730eac0b",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["8d563fe2-740f-4551-9e56-78dbd6c5b771"]
+  }],
+  "urls": ["https://www.cpbl.com.tw/"],
+  "plugins": []
+}

@@ -3,3 +3,13 @@ SonarQube
 1. Download
 wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-8.8.0.42792.zip
 
+2. 
+SonarQube 程式碼品質分析工具用 7 個維度來分析程式碼品質，包括：
+
+程式架構　Architecture & Design
+冗餘程式　Duplications
+單元測試　Unit tests
+複雜度　　Complexity
+潛在問題　Potential bugs
+寫作原則　Coding rules
+註解　　　Comments  
