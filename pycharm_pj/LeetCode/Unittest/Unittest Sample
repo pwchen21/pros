@@ -1,0 +1,22 @@
+import unittest
+from lcpb import <>
+
+class test_for_<Name>(unittest.TestCase):
+    def test_<leetcodeNo>_01(self):
+        result=<FileName>.solution.<FunctionName>(self, <Data>)
+        self.assertEqual(result, <ans>)
+    def test_<leetcodeNo>_02(self):
+        result=<FileName>.solution.<FunctionName>(self, <Data>)
+        self.assertEqual(result, <ans>)
+    def test_<leetcodeNo>_03(self):
+        result=<FileName>.solution.<FunctionName>(self, <Data>)
+        self.assertEqual(result, <ans>)
+
+if __name__ == '__main__':
+    suit=unittest.TestSuite()
+    suit.addTest("test_<leetcodeNo>_01")
+    suit.addTest("test_<leetcodeNo>_02")
+    suit.addTest("test_<leetcodeNo>_03")
+
+    runner=unittest.TextTestRunner()
+    runner.run(suit)
