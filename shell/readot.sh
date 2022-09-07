@@ -1,3 +1,5 @@
+shell
+
 read -p "Please enter your option:" option
 if [ "$option" == "1" ]; then
       echo "test 1"
@@ -8,3 +10,10 @@ elif [ "$option" == "3" ]; then
 else
       echo "Please enter correct option!"
 fi
+
+
+--
+for ((i=1;i<=10;i++))
+do
+  echo "$i"
+done

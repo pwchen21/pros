@@ -4,3 +4,30 @@ Author: PWCHEN
 
 [Ref]
 https://www.appcoda.com.tw/automated-ui-testing-appium/
+
+[pre-install]
+JDK
+ - Set to system variable
+    JAVA_HOME C:\Program Files\Java\jdk1.8.0_311\
+ - Set to path
+    %JAVA_HOME%\bin
+    %JAVA_HOME%\jre\bin
+SDK
+ - Set to system variable
+    ANDROID_HOME C:\Sdk
+ - Set to path 
+    %ANDROID_HOME%\platforms
+    %ANDROID_HOME%\platform-tools
+Node.js
+Appium-Python-Client
+
+
+  "automationName": "appium",
+  "platformName": "Android",
+  "platformVersion": "7.0",
+  
+
+  "DeviceName": "Android Emulator"  (adb devices)
+#By adb shell
+  "appPackages": "com.android.calendar", (adb shell -> pm list package)
+  "appActivity": ".Calculator",(open calculator on the phone ->adb shell -> dumpsys window windows | grep -i current)
