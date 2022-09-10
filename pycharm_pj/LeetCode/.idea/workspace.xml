@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="231ddc1b-ac43-4d1f-8891-08260f888fe6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/LeetCode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PyTest_Sample/pytest_sample.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unittest/Unittest Sample" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unittest/test_boatSave881.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unittest/test_brcalc991.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unittest/test_citySche1029.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unittest/test_weakestrow1337.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unittest_Sample/calcu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Unittest_Sample/test_calcu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lcpb/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lcpb/boatSave881.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lcpb/brcalc991.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lcpb/citySche1029.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lcpb/weakestrow1337.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Appnium/Noted_for_Appnium.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../Appnium/Noted_for_Appnium.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Selenium/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../../Selenium/chromedriver.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../python/Leetcode/temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../python/Leetcode/temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../shell/readot.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../../shell/readot.sh" afterDir="false" />
-    </list>
+    <list default="true" id="231ddc1b-ac43-4d1f-8891-08260f888fe6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -197,7 +172,19 @@
       <option name="presentableId" value="Default" />
       <updated>1648072598990</updated>
     </task>
+    <task id="LOCAL-00001" summary="Commit Leetcode">
+      <created>1662843750746</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1662843750746</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Commit Leetcode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit Leetcode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
