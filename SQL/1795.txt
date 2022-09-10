@@ -1,0 +1,20 @@
+SELECT v.product_id, v.store, v.price
+FROM (
+    SELECT product_id, 'store1' as store, store1 as price FROM products
+    UNION ALL
+    SELECT product_id, 'store2' as store, store2 as price FROM products
+    UNION ALL
+    SELECT product_id, 'store3' as store, store3 as price FROM products
+
+) as v
+
+WHERE v.price IS NOT NULL
+
+
+{"headers": ["product_id", "store", "price"], "values": [
+[0, "store1", 95], 
+[1, "store1", 70], 
+[0, "store2", 100], 
+[1, "store2", null], 
+[0, "store3", 105], 
+[1, "store3", 80]]}

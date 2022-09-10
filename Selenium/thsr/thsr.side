@@ -1,0 +1,162 @@
+{
+  "id": "c214ff50-da4c-40a2-b012-54a6f5aeeb89",
+  "version": "2.0",
+  "name": "thsr",
+  "url": "https://www.thsrc.com.tw",
+  "tests": [{
+    "id": "f396d115-6c59-4a69-b9dd-d2d973548bf3",
+    "name": "T1",
+    "commands": [{
+      "id": "5df8ad85-6436-4abf-8dae-151b4364f781",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5ab3e8c1-7f70-4b43-9ede-1a7d19504b57",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1327x708",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "df8dd6af-6452-44be-b327-ba50ce7ae992",
+      "comment": "",
+      "command": "click",
+      "target": "css=.swal2-confirm",
+      "targets": [
+        ["css=.swal2-confirm", "css:finder"],
+        ["xpath=(//button[@type='button'])[43]", "xpath:attributes"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'我同意')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3615b4b1-e255-49da-a5fe-ec06198b5528",
+      "comment": "",
+      "command": "click",
+      "target": "id=select_location01",
+      "targets": [
+        ["id=select_location01", "id"],
+        ["css=#select_location01", "css:finder"],
+        ["xpath=//select[@id='select_location01']", "xpath:attributes"],
+        ["xpath=//div[@id='index-tab-01']/div/div/div/div/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "72a05f95-89be-409a-b1b0-dfbe007d7283",
+      "comment": "",
+      "command": "select",
+      "target": "id=select_location01",
+      "targets": [],
+      "value": "label=台中"
+    }, {
+      "id": "96338f7d-c32e-4fbf-ab53-b509708f3be8",
+      "comment": "",
+      "command": "click",
+      "target": "id=select_location02",
+      "targets": [
+        ["id=select_location02", "id"],
+        ["css=#select_location02", "css:finder"],
+        ["xpath=//select[@id='select_location02']", "xpath:attributes"],
+        ["xpath=//div[@id='index-tab-01']/div/div/div/div[3]/select", "xpath:idRelative"],
+        ["xpath=//div[3]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "78c8a5ef-de6b-4023-a2ac-65288221ddba",
+      "comment": "",
+      "command": "select",
+      "target": "id=select_location02",
+      "targets": [],
+      "value": "label=台南"
+    }, {
+      "id": "719ebd81-f760-4611-99dc-c4ace5ce4ea6",
+      "comment": "",
+      "command": "click",
+      "target": "id=Departdate01",
+      "targets": [
+        ["id=Departdate01", "id"],
+        ["css=#Departdate01", "css:finder"],
+        ["xpath=//input[@id='Departdate01']", "xpath:attributes"],
+        ["xpath=//div[@id='tot-1']/div/input", "xpath:idRelative"],
+        ["xpath=//div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "62d3a580-5d52-4936-9aff-b0716f096139",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(6) > .day:nth-child(7)",
+      "targets": [
+        ["css=tr:nth-child(6) > .day:nth-child(7)", "css:finder"],
+        ["xpath=//div[@id='tot-1']/div/div/ul/li/div/div/table/tbody/tr[6]/td[7]", "xpath:idRelative"],
+        ["xpath=//tr[6]/td[7]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fa541164-d845-483d-a0a9-14ee29b36f92",
+      "comment": "",
+      "command": "click",
+      "target": "id=outWardTime",
+      "targets": [
+        ["id=outWardTime", "id"],
+        ["css=#outWardTime", "css:finder"],
+        ["xpath=//input[@id='outWardTime']", "xpath:attributes"],
+        ["xpath=//div[@id='tot-1']/div[2]/input", "xpath:idRelative"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c5ad5d00-783a-44f2-af2e-a6cc0b63bc0d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.timepicker-hour",
+      "targets": [
+        ["css=.timepicker-hour", "css:finder"],
+        ["xpath=//div[@id='tot-1']/div[2]/div/ul/li[2]/div/div/table/tr[2]/td/span", "xpath:idRelative"],
+        ["xpath=//td/span", "xpath:position"],
+        ["xpath=//span[contains(.,'05')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f6791f83-f72b-4d1f-99d8-fda0c33792e8",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(5) > .hour:nth-child(2)",
+      "targets": [
+        ["css=tr:nth-child(5) > .hour:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='tot-1']/div[2]/div/ul/li[2]/div/div[2]/table/tr[5]/td[2]", "xpath:idRelative"],
+        ["xpath=//tr[5]/td[2]", "xpath:position"],
+        ["xpath=//td[contains(.,'17')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "124e00b8-1272-4c47-bb73-60f96e9f12d5",
+      "comment": "",
+      "command": "click",
+      "target": "id=start-search",
+      "targets": [
+        ["id=start-search", "id"],
+        ["css=#start-search", "css:finder"],
+        ["xpath=//button[@id='start-search']", "xpath:attributes"],
+        ["xpath=//div[@id='index-tab-01']/div/div[5]/button", "xpath:idRelative"],
+        ["xpath=//div[5]/button", "xpath:position"],
+        ["xpath=//button[contains(.,'查詢')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "feb5508d-96e9-4197-ba7d-258aa1d5c542",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["f396d115-6c59-4a69-b9dd-d2d973548bf3"]
+  }],
+  "urls": ["https://www.thsrc.com.tw/"],
+  "plugins": []
+}

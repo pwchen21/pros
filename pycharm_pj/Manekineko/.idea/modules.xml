@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../LeetCode/.idea/LeetCode.iml" filepath="$PROJECT_DIR$/../LeetCode/.idea/LeetCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Manekineko.iml" filepath="$PROJECT_DIR$/.idea/Manekineko.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../automation_Test/.idea/automation_Test.iml" filepath="$PROJECT_DIR$/../automation_Test/.idea/automation_Test.iml" />
+    </modules>
+  </component>
+</project>
