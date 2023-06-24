@@ -131,3 +131,21 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin"
 
 - 確認service status
  service --status-all
+
+- 無線網路
+按照下述步驟即可完成「無線網路」設定：
+STEP 1. 尋找無線網卡代號 iwconfig 〈以本次實驗機器為例：wlan0〉
+STEP 2. 啟用無線網卡
+sudo ifconfig wlan0 up
+STEP 3. 尋找可用無線 AP 〈Access Point〉
+sudo iwlist wlan0 scanning
+藉由上述指令可找出附近可用的無線 AP，並記下它們的 ESSID
+STEP 4. 連接無線 AP
+sudo iwconfig wlan0 essid "AP_NAME"
+STEP 5. 取得 IP
+sudo dhclient wlan0
+如果是不需輸入密碼的無線 AP，完成上述步驟即可上網。
+如果需輸入密碼，請接續下列步驟：
+sudo iwconfig wlan0 key ********
+若密碼是ASCII
+sudo iwconfig wlan0 key s:********

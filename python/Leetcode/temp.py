@@ -3,6 +3,13 @@ import secrets
 import collections #for B5
 from itertools import combinations #for F5
 from collections import defaultdict
+import math
+
+
+print(7%3)
+print(6/3)
+# for x in range(10):
+#    print(x)
 
 # D={"a":1, "b":2, "c":3}
 # for (k, v) in D.items(): 
@@ -26,7 +33,9 @@ from collections import defaultdict
 # print(ist)
 
 # print("\n====B1. List Test====")
-# a=[1,2,3,4,5]
+a=[1,2,3,4,5]
+print('here:', a.index(4))
+print('tt:', a[-1])
 # for x in range(len(a)):
 #     print(x)
 
@@ -61,8 +70,11 @@ from collections import defaultdict
 
 
 # print("\n====B2. Dictionary Test====")
-D={"a":[], "b":2, "c":3}
-D.get(2)
+# D={"a":[], "b":2, "c":3}
+# if "a" in D: 
+#     print('y')
+# print(D)
+
 # D["a"].append('x')
 # D["a"].append('c')
 # print(D)
@@ -124,7 +136,9 @@ D.get(2)
 # s="jiijiadfa"
 # li={}
 # for i, c in enumerate(s):
+#     print(i, c)
 #     li[c]=i
+
 
 # print("\n====F1. Zip====")
 # print(a, b)
@@ -137,8 +151,8 @@ D.get(2)
 # print(nums)
 
 # print("\n====F3. Range====")
-# for x in range(10, 0, -1):
-#     print(x)
+for x in range(10, 0, -1):
+     print(x)
 
 # print("\n====F4. Random====")
 # print(secrets.token_hex(2))
@@ -173,6 +187,9 @@ D.get(2)
 
     #     return ans
 
+#a, b = 20, 100
+#print('h', math.gcd(a,b))
+print(1 & 2)
 
 
 # from timeit import Timer
